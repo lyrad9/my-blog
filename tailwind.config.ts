@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily:{
+			sans: ['var(--font-geist-sans)'],
+			mono: ['var(--font-geist-mono)'],
+			caption:["var(--font-caption)"]
+			},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -58,6 +63,6 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography'),],
 };
 export default config;
