@@ -1,45 +1,66 @@
+"use client";
 import React from "react";
-import Link from "next/link";
+
 import { Calendar } from "lucide-react";
-import { buttonVariants } from "./ui/button";
+
 import { cn, formatDateToLocal } from "@/lib/utils";
 import { MoveRight } from "lucide-react";
-interface PostItemProps {
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
+import { useChangeLocale, useCurrentLocale } from "@/locales/client";
+
+import clsx from "clsx";
+export interface PostItemProps {
   slug: string;
   title: string;
   description?: string;
   date: string;
 }
 export const PostItem = ({ slug, title, description, date }: PostItemProps) => {
+  const locale = useCurrentLocale();
+
+  console.log(locale);
+  const router = useRouter();
+
   return (
-    <article className="flex flex-col gap-2 border-border border-b">
+    <article
+      onClick={() => router.push(slug)}
+      className="cursor-pointer w-full flex max-sm:flex-col max-sm:items-start py-2  gap-2 border-border border-b justify-between items-center"
+    >
       <div>
-        <h2 className="text-2xl font-bold">
-          <Link href={slug}>{title}</Link>
-        </h2>
+        <div>
+          <h2
+            className={clsx(
+              "text-2xl font-bold text-primary dark:text-primary-foreground"
+            )}
+          >
+            {title}
+          </h2>
+        </div>
+        <div className="max-w-none text-muted-foreground"> {description}</div>
       </div>
-      <div className="max-w-none text-muted-foreground">{description}</div>
-      <div className="flex justify-between items-center">
-        <dl>
-          <dt className="sr-only">Published on</dt>
-          <dd className="text-sm sm:text-base font-medium flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            <time className="" dateTime={date}>
-              {formatDateToLocal(date)}
-            </time>
-          </dd>
-        </dl>
-        <Link
+      <dl>
+        <dt className="sr-only">Published on</dt>
+        <dd className="font-caption  text-slate-500 dark:text-slate-300 flex gap-1">
+          <Calendar className="h-4 w-4" />
+          <time className="" dateTime={date}>
+            {formatDateToLocal(date, locale === "fr" ? "fr-FR" : "en-EN")}
+          </time>
+        </dd>
+      </dl>
+    </article>
+  );
+};
+{
+  /* <Link
           href={slug}
           className={cn(
             buttonVariants({ variant: "link" }),
             "py-8 flex gap-2 items-center"
           )}
         >
-          Read More
+          {t("readMore")}
+          
           <MoveRight className="size-4" />
-        </Link>
-      </div>
-    </article>
-  );
-};
+        </Link> */
+}

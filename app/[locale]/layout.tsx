@@ -5,6 +5,9 @@ import { Anek_Telugu } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/Theme/ThemeProvider";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Providers } from "./providers";
+import { Spacing } from "@/components/Spacing";
+import { Footer } from "@/components/Footer";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -26,17 +29,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: {
+    locale: string;
+  };
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className=" flex min-h-screen">
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
           AnekTelugu.variable,
-          "min-h-screen bg-background font-sans text-foreground "
+          "min-h-screen w-full h-full bg-background font-sans text-foreground "
         )}
       >
         <ThemeProvider
@@ -45,10 +52,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-dvh bg-background flex-col">
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-          </div>
+          <Providers locale={params.locale}>
+            <div className=" flex min-h-screen bg-background flex-col">
+              <SiteHeader />
+              <Spacing size="md" />
+              <main className="flex-1">{children}</main>
+              <Spacing size="md" />
+              <Footer />
+            </div>
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

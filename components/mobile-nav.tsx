@@ -11,15 +11,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button, buttonVariants } from "./ui/button";
+import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Icons } from "./icons";
 import { cn } from "@/lib/utils";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/Theme/Theme-toggle";
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
@@ -38,48 +43,53 @@ export function MobileNav() {
 
             <div className="flex flex-col gap-3 mt-3">
               <MobileLink
-                href={"/blog"}
+                href={"/posts"}
                 onOpenChange={setOpen}
-                className="hover:text-primary text-muted-foreground"
+                className={clsx(
+                  "hover:text-primary transition-colors text-muted-foreground",
+                  {
+                    "text-primary ": pathname.match(
+                      /^\/(fr|en)\/posts(?:\/.*)?$/
+                    ),
+                  }
+                )}
               >
-                Blog
+                posts
               </MobileLink>
               <MobileLink
                 href={"/about"}
                 onOpenChange={setOpen}
-                className="hover:text-primary text-muted-foreground"
+                className={clsx(
+                  "hover:text-primary transition-colors text-muted-foreground",
+                  { "text-primary ": pathname.match(/^\/(fr|en)\/about$/) }
+                )}
               >
                 About
               </MobileLink>
             </div>
-          </div>
-          <div className="flex-1" />
-          <div className="">
-          <SheetFooter >
-          <div className="flex gap-2">
-            <Link
-            className="cursor-pointer"
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Icons.GithubIcon className="w-4 h-4" />
-              <span className="sr-only">Github</span>
-            </Link>
-            <Link
+            <div className="flex items-center gap-2">
+              <Link
                 className="cursor-pointer"
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Icons.MailIcon className="w-4 h-4" />
-            </Link>
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icons.GithubIcon className="w-4 h-4" />
+                <span className="sr-only">Github</span>
+              </Link>
+              <Link
+                className="cursor-pointer"
+                href="mailto:mbakopngako@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icons.MailIcon className="w-4 h-4" />
+              </Link>
+              <ThemeToggle />
+            </div>
           </div>
-        </SheetFooter>
-          </div>
+         
         </div>
-
-    
       </SheetContent>
     </Sheet>
   );

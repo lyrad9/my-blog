@@ -1,12 +1,14 @@
 import { defineConfig, s,defineCollection } from 'velite'
-
+import rehypeSlug from "rehype-slug"
+import rehypePrettyCode from "rehype-pretty-code"
+// import rehypeAutoLinkHeading from "rehype-autoLink-headings"
 const computedDields = <T extends {slug:string}>(data:T) =>({
     ...data,
     slugAsParams:data.slug.split("/").slice(1).join("/")
 })
 export const posts = defineCollection({
   name: 'Post', // collection type name
-  pattern: 'blog/**/*.mdx', // content files glob pattern
+  pattern: 'posts/**/*.mdx', // content files glob pattern
   schema: s
     .object({
       title: s.string().max(99), // Zod primitive type
@@ -20,6 +22,9 @@ export const posts = defineCollection({
     //  content: s.markdown(), // transform markdown to html
     description:s.string().max(99).optional(),
     published:s.boolean().default(true),
+    lang:s.string(),
+    otherSlug:s.string().optional(),
+    fullDescription:s.string().optional(),
     body:s.mdx()
 }).transform(computedDields)
 })
