@@ -10,6 +10,7 @@ import { Spacing } from "@/components/Spacing";
 import { Footer } from "@/components/Footer";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "@/locales/server";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
     locale: string;
   };
 }>) {
+  setStaticParamsLocale(params.locale)
   return (
     <html lang="en" className=" flex min-h-screen">
       <body
