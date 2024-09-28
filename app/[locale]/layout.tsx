@@ -41,13 +41,13 @@ export default function RootLayout({
 }>) {
   setStaticParamsLocale(params.locale)
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="w-full h-full">
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
           AnekTelugu.variable,
-          "h-full bg-background font-sans text-foreground"
+          "w-full h-full bg-background font-sans text-foreground"
         )}
       >
         <ThemeProvider
