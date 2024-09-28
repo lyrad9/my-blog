@@ -1,7 +1,7 @@
 import React from "react";
 import { Section } from "@/components/Section";
 import Image from "next/image";
-import profil from "../../../public/static/IMG-20230131-WA0018.jpg";
+import profil from "../../../public/IMG-20230131-WA0018.jpg"
 import { Spacing } from "@/components/Spacing";
 import { getI18n } from "@/locales/server";
 import { Code } from "@/components/Code";
