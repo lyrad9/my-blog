@@ -41,13 +41,13 @@ export default function RootLayout({
 }>) {
   setStaticParamsLocale(params.locale)
   return (
-    <html lang="en" className=" flex min-h-screen">
+    <html lang="en" className="h-full">
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
           AnekTelugu.variable,
-          "min-h-screen w-full h-full bg-background font-sans text-foreground "
+          "h-full bg-background font-sans text-foreground"
         )}
       >
         <ThemeProvider
@@ -57,7 +57,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers locale={params.locale}>
-            <div className=" flex min-h-screen bg-background flex-col">
+            <div className="flex min-h-screen bg-background flex-col">
               <SiteHeader />
               <Spacing size="md" />
               <main className="flex-1">{children}</main>
