@@ -15,8 +15,8 @@ const BlogPage = async () => {
   const displayPosts = sortedPosts;
 
   return (
-    <Section >
-      <h1 className="inline-block font-black text-3xl  tracking-wider font-caption lg:text-5xl">
+    <Section>
+      <h1 className="inline-block font-black text-3xl tracking-wider font-mono lg:text-5xl">
         Posts
       </h1>
 
