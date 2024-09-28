@@ -33,8 +33,7 @@ export async function generateStaticParams(): Promise<
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  console.log("params", params.locale);
-   setStaticParamsLocale(params.locale)
+  setStaticParamsLocale(params.locale);
   console.log(params);
   const locale = getCurrentLocale();
   const t = await getI18n();
