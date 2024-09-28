@@ -9,9 +9,12 @@ import { formatDateToLocal, formateDate } from "@/lib/utils";
 import { getI18n } from "@/locales/server";
 import Link from "next/link";
 import { Code } from "@/components/Code";
+import { setStaticParamsLocale } from "next-international/server";
+import { getStaticParams } from "@/locales/server";
 export interface PostPageProps {
   params: {
     slug: string[];
+    locale: string;
   };
 }
 async function getPostFromParams(params: PostPageProps["params"]) {
@@ -23,15 +26,19 @@ async function getPostFromParams(params: PostPageProps["params"]) {
   return post;
 }
 export async function generateStaticParams(): Promise<
-  PostPageProps["params"][]
+  { slug: string[] }[]
+  //PostPageProps["params"][]
 > {
   return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
 }
+
 export default async function PostPage({ params }: PostPageProps) {
+  console.log("params", params.locale);
+   setStaticParamsLocale(params.locale)
   console.log(params);
   const locale = getCurrentLocale();
   const t = await getI18n();
-  console.log(locale);
+  console.log("locale,", locale);
   const post = await getPostFromParams(params);
   if (!post || !post?.published) {
     notFound();
@@ -74,9 +81,17 @@ export default async function PostPage({ params }: PostPageProps) {
             })}
           </p>
 
-          <p >
-            {post.lang === "fr" && <Code className="text-sm text-blue-500 dark:text-blue-500">version française</Code>}
-            {post.lang === "en" && <Code className="text-sm text-foreground text-blue-500 dark:text-blue-500">english version</Code>}
+          <p>
+            {post.lang === "fr" && (
+              <Code className="text-sm text-blue-500 dark:text-blue-500">
+                version française
+              </Code>
+            )}
+            {post.lang === "en" && (
+              <Code className="text-sm text-foreground text-blue-500 dark:text-blue-500">
+                english version
+              </Code>
+            )}
           </p>
         </div>
 
