@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Section } from "@/components/Section";
 import Image from "next/image";
@@ -7,10 +8,18 @@ import { getI18n } from "@/locales/server";
 import { Code } from "@/components/Code";
 import Link from "next/link";
 import { Icons } from "@/components/icons";
-const AboutPage = async () => {
-  const t = await getI18n();
+import notFound from "../../../public/404.gif"
+export const dynamic = "force-static";
+
+import { useI18n, useScopedI18n } from "@/locales/client";
+const AboutPage =  () => {
+  
+
+  const t =  useI18n();
   return (
+    
     <Section className="">
+     <Spacing size="md" />
       <div>
         <h1 className=" font-bold max-sm:text-3xl text-4xl">About</h1>
       </div>
@@ -59,6 +68,7 @@ const AboutPage = async () => {
           />
         </div>
       </div>
+      <Spacing size="md" />
     </Section>
   );
 };

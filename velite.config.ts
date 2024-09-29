@@ -4,7 +4,7 @@ import rehypePrettyCode from "rehype-pretty-code"
 // import rehypeAutoLinkHeading from "rehype-autoLink-headings"
 const computedDields = <T extends {slug:string}>(data:T) =>({
     ...data,
-    slugAsParams:data.slug.split("/").slice(1).join("/")
+    slugAsParams:data.slug.split("/").slice(1).join("/").replace(/^\d+-(en|fr)\./, "")
 })
 export const posts = defineCollection({
   name: 'Post', // collection type name
@@ -41,7 +41,11 @@ export default defineConfig  ({
   },
   collections: {posts},
   mdx:{
-    rehypePlugins:[],
+
+    rehypePlugins:[
+      rehypeSlug,
+      [rehypePrettyCode,{theme:"github-dark"}]
+    ],
     remarkPlugins:[]
   }
 })

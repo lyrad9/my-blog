@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Code } from "@/components/Code";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "@/locales/server";
+import { Spacing } from "@/components/Spacing";
 export interface PostPageProps {
   params: {
     slug: string[];
@@ -25,28 +26,28 @@ async function getPostFromParams(params: PostPageProps["params"]) {
 
   return post;
 }
-export async function generateStaticParams()
-// : Promise<
-//   { slug: string[] }[]
- 
-// >
- {
-  return getStaticParams()
+export async function generateStaticParams() {
+  // : Promise<
+  //   { slug: string[] }[]
+
+  // >
+  return getStaticParams();
   // return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {
   setStaticParamsLocale(params.locale);
   console.log(params);
-  const locale = getCurrentLocale();
+
   const t = await getI18n();
-  console.log("locale,", locale);
+
   const post = await getPostFromParams(params);
   if (!post || !post?.published) {
     notFound();
   }
   return (
     <Section>
+         <Spacing size="md" />
       <article className=" ">
         <div className="grid gap-3">
           <div>
@@ -58,7 +59,7 @@ export default async function PostPage({ params }: PostPageProps) {
               </Link>
 
               <div className="w-1 h-1 bg-foreground dark:bg-primary-foreground rounded-full" />
-              <span> {formateDate(post.date)}</span>
+              <span> {new Date(post.date).toLocaleDateString()}</span>
               {post.otherSlug && <ChangeLocalPost params={params} />}
             </div>
           </div>
@@ -78,7 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
               ),
               date: formatDateToLocal(
                 post.date,
-                locale === "fr" ? "fr-FR" : "en-EN"
+                params.locale === "fr" ? "fr-FR" : "en-EN"
               ),
             })}
           </p>
@@ -100,6 +101,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <Separator className="my-4" />
         <MDXContent code={post.body} />
       </article>
+      <Spacing size="md" />
     </Section>
   );
 }

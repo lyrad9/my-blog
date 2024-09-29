@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Callout } from "./callout";
 import { Code } from "./Code";
 import { cn } from "@/lib/utils";
+import { Suspense } from "react";
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   return fn({ ...runtime }).default;
@@ -27,5 +28,6 @@ interface MdxProps {
 }
 export function MDXContent({ code }: MdxProps) {
   const Component = useMDXComponent(code);
-  return <Component components={components} />;
+  return <Suspense fallback={<p>Loading...</p>}><Component  components={components} />;</Suspense>
+  
 }

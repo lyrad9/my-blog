@@ -39,15 +39,15 @@ export default function RootLayout({
     locale: string;
   };
 }>) {
-  setStaticParamsLocale(params.locale)
+  setStaticParamsLocale(params.locale);
   return (
-    <html lang="en" className="w-full h-full">
+    <html lang="en" className="w-full min-h-screen scroll-pt-[3.5rem]">
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
           AnekTelugu.variable,
-          "w-full h-full bg-background font-sans text-foreground"
+          "w-full min-h-screen bg-background font-sans text-foreground"
         )}
       >
         <ThemeProvider
@@ -59,9 +59,9 @@ export default function RootLayout({
           <Providers locale={params.locale}>
             <div className="flex min-h-screen bg-background flex-col">
               <SiteHeader />
-              <Spacing size="md" />
-              <main className="flex-1">{children}</main>
-              <Spacing size="md" />
+
+              <main className="flex flex-1">{children}</main>
+
               <Footer />
             </div>
           </Providers>

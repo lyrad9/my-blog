@@ -17,11 +17,12 @@ export const LatestPosts = async() => {
       <p className="mb-8 font-mono text-xl font-bold">{t("newestPosts")}</p>
       <div className="grid gap-8">
         {newestPosts.map((post) => {
-          const { slug, date, title,fullDescription } = post;
+          const { date, title,fullDescription,slugAsParams } = post;
           return (
-            <div className="" key={slug}>
+            <div className="" key={slugAsParams}>
               <ItemLatestPosts
-                slug={slug}
+              
+                slug={slugAsParams}
                 date={date}
                 title={title}              
                 fullDescription={fullDescription}
