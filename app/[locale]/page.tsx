@@ -11,7 +11,7 @@ export default async function Home() {
   const t = await getI18n();
   return (
     <Section className="p-0">
-      <Spotlight className="top-5 -left-10 md:left-60 md:-top-20" fill="" />
+      {/* <Spotlight className="top-5 -left-10 md:left-60 md:-top-20" fill="" /> */}
       <Spacing size="md" />
       <Section className="max-w-2xl">
         <div className="grid gap-2 ">
