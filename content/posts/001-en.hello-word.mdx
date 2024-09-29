@@ -10,7 +10,26 @@ published: true
 
 ---
 
+```js {4} showLineNumbers
+import { useFloating } from "@floating-ui/react";
 
+function MyComponent() {
+  const { refs, floatingStyles } = useFloating();
+
+  return (
+    <>
+      <div ref={refs.setReference} />
+      <div ref={refs.setFloating} style={floatingStyles} />
+    </>
+  );
+}
+```
+
+```js myfile.js
+const add = (a, b) => a + b;
+
+console.log(add(1, 2)); // [!code highlight]
+```
 <Callout type="danger">I am a callout</Callout>
 <Code>Daryl</Code>
 # Hello World
