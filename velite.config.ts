@@ -1,6 +1,7 @@
 import { defineConfig, s,defineCollection } from 'velite'
 import rehypeSlug from "rehype-slug"
 import rehypePrettyCode from "rehype-pretty-code"
+import { rehypePlugin } from './src/mdx-plugin'
 // import rehypeAutoLinkHeading from "rehype-autoLink-headings"
 const computedDields = <T extends {slug:string}>(data:T) =>({
     ...data,
@@ -41,11 +42,14 @@ export default defineConfig  ({
   },
   collections: {posts},
   mdx:{
-
-    rehypePlugins:[
-      rehypeSlug,
-      [rehypePrettyCode,{theme:"github-dark"}]
-    ],
+    // rehypePlugin,
+    rehypePlugins:rehypePlugin,
+    
+    // [
+      
+    //   rehypeSlug,
+    //   [rehypePrettyCode,{theme:"github-dark"}]
+    // ],
     remarkPlugins:[]
   }
 })

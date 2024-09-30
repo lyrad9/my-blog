@@ -86,3 +86,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.mdx-content > *:last-child {
+  margin-bottom: 0px;
+}
+
+.mdx-content > *:first-child {
+  margin-top: 0px;
+}
+
+.prose code .highlighted {
+  background: hsl(var(--primary) / 0.2) !important;
+  transition: background-color 0.5s;
+  margin: 0 -1.5rem;
+  padding: 0 1.5rem;
+  width: calc(100% + 48px);
+  display: inline-block;
+}

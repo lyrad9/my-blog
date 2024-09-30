@@ -12,27 +12,74 @@ import { Code } from "@/components/Code";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "@/locales/server";
 import { Spacing } from "@/components/Spacing";
+import { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+// export const dynamic = "force-static";
+async function getPostFromParams( slugParams: string[]) {
+  console.log("getPostParams",slugParams);
+  const slug = slugParams?.join("/");
+  console.log(slug);
+  const post = posts.find((post) => post.slugAsParams === slug);
+console.log("post",post)
+  return post;
+}
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const post = await getPostFromParams(params.slug);
+
+  if (!post) {
+    return {
+      title: "404 - Page Not Found",
+      description: "Page not found",
+    };
+  }
+
+  // const ogSearchParams = new URLSearchParams();
+  // ogSearchParams.set("title", post.title);
+
+  return {
+    title: post.title,
+    description: post.description,
+    authors: { name: siteConfig.author },
+    // openGraph: {
+    //   title: post.title,
+    //   description: post.description,
+    //   type: "article",
+    //   url: post.slug,
+    //   images: [
+    //     {
+    //       url: `/api/og?${ogSearchParams.toString()}`,
+    //       width: 1200,
+    //       height: 630,
+    //       alt: post.title,
+    //     },
+    //   ],
+    // },
+    // twitter: {
+    //   card: "summary_large_image",
+    //   title: post.title,
+    //   description: post.description,
+    //   images: [`/api/og?${ogSearchParams.toString()}`],
+    // },
+  };
+}
+
 export interface PostPageProps {
   params: {
     slug: string[];
     locale: string;
   };
 }
-async function getPostFromParams(params: PostPageProps["params"]) {
-  console.log(params);
-  const slug = params?.slug?.join("/");
-  console.log(slug);
-  const post = posts.find((post) => post.slugAsParams === slug);
 
-  return post;
-}
 export async function generateStaticParams() {
   // : Promise<
   //   { slug: string[] }[]
 
   // >
-  return getStaticParams();
-  // return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
+  //return getStaticParams();
+  return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -41,14 +88,14 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const t = await getI18n();
 
-  const post = await getPostFromParams(params);
+  const post = await getPostFromParams(params.slug);
   if (!post || !post?.published) {
     notFound();
   }
   return (
     <Section>
          <Spacing size="md" />
-      <article className=" ">
+      <article className="">
         <div className="grid gap-3">
           <div>
             <div className="flex items-center gap-2">

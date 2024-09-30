@@ -4,6 +4,9 @@ import { Callout } from "./callout";
 import { Code } from "./Code";
 import { cn } from "@/lib/utils";
 import { Suspense } from "react";
+import MarkdownImage from "./MarkdownImage";
+import { MdxYouTube } from "@/src/features/MdxYouTube";
+import { MdxPre } from "@/src/features/MdxPre";
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   return fn({ ...runtime }).default;
@@ -11,7 +14,12 @@ const useMDXComponent = (code: string) => {
 const components = { 
   Image,
   Callout,
-  Code
+  Code,
+  MarkdownImage,
+  YouTube: MdxYouTube,
+  pre:MdxPre
+
+
   // h1:({className,...props}) => (
   //   <h1 className={cn(
   //     "mt-2 text-4xl font-bold tracking-tight",

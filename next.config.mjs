@@ -3,6 +3,16 @@ import { build } from 'velite'
 /** @type {import('next').NextConfig} */
 export default {
   // othor next config here...
+  images:{
+    remotePatterns:[
+      {
+        protocol: "https",
+        hostname: "lzdzy7eapvafpa4c.public.blob.vercel-storage.com",
+        port: "",
+        // pathname:'/u/**',
+      },
+    ]
+  },
   webpack: config => {
     config.plugins.push(new VeliteWebpackPlugin())
     return config
