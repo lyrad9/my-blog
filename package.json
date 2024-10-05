@@ -19,6 +19,7 @@
     "@shikijs/transformers": "^1.17.7",
     "@tanstack/react-query": "^5.59.0",
     "@upstash/redis": "^1.34.2",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.1",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@shikijs/rehype": "^1.17.7",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
