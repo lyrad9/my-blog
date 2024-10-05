@@ -15,7 +15,7 @@ import { Spacing } from "@/components/Spacing";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { ViewCount } from "./ViewCount";
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from "lucide-react";
 // export const dynamic = "force-static";
 async function getPostFromParams(slugParams: string[]) {
   console.log("getPostParams", slugParams);
@@ -95,22 +95,20 @@ export default async function PostPage({ params }: PostPageProps) {
       <article className="article">
         <div className="grid gap-3">
           <div>
-            <div className="flex gap-2">
-              <Link
-                className="cursor-pointer underline font-semibold hover:text-muted-foreground"
-                href="/posts"
-              >
-                <div className="w-10 h-10 rounded-full dark:bg-background flex justify-center items-center">
-                  <ChevronLeft className="text-priamry-foreground" size={16} />
-                </div>
-                {/* {t("back")} */}
-              </Link>
+            <Link
+              className="mb-2 w-8 h-8 border rounded-full bg-muted hover:bg-foreground/10 dark:bg-muted/30 dark:hover:bg-muted/50 flex justify-center items-center cursor-pointer "
+              href="/posts"
+            >
+              <ChevronLeft className=" text-muted-foreground dark:text-primary-foreground " size={15} />
 
+              {/* {t("back")} */}
+            </Link>
+            <div className="flex gap-2">
               <span className="text-muted-foreground">
                 {" "}
-                {new Date(post.date).toLocaleDateString()} | {<ViewCount slug={post.slug} />}
+                {new Date(post.date).toLocaleDateString()} |{" "}
+                {<ViewCount slug={post.slug} />}
               </span>
-
 
               {post.translation && <ChangeLocalPost params={params} />}
             </div>

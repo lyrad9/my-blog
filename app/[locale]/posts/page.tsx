@@ -18,7 +18,7 @@ const BlogPage = async({
   // const t = await getI18n();
   const locale = getCurrentLocale();
   let displayPosts:Post[] = []
-  if (searchParams?.category) {
+  if (searchParams && searchParams?.category) {
     displayPosts =  posts.filter(
       (post) =>
         post.published &&
