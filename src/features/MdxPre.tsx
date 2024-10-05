@@ -40,7 +40,7 @@ export const MdxPre = ({ children, className, ...props }: MdxPreProps) => {
             getTextContent={() => {
               const textContent = ref.current?.textContent;
               if (!textContent) return " ";
-              //  const code = textContent.replace(`${props["data-language"]}`, "");
+                const code = textContent.replace(`${props["data-language"]}`, "");
               return textContent;
             }}
           />
