@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { incrementViews } from '../../../posts/[slug]/views.action';
+import { incrementViews } from '@/app/[locale]/posts/[...slug]/views.action';
 import { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
