@@ -28,6 +28,7 @@ export const incrementViews = async (
   req: NextRequest
 ): Promise<{ views: number }> => {
   const cookieList = cookies();
+  
   const currentPostCookieDate = cookieList.get(`postview:${slug}`)?.value;
   const KEY = `postview:${slug}`;
  // Obtenir et hasher l'adresse IP de l'utilisateur

@@ -7,10 +7,11 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export const ViewCount = ({ slug }: { slug: string }) => {
   // Utilisation de SWR pour faire la requête à l'API route
-  const { data, error } = useSWR(`/api/views/${slug}`, fetcher);
+  const { data} = useSWR(`/api/views/${slug}`, fetcher);
 
-  if (error) return <span className="text-muted-foreground">Erreur</span>;
-  if (!data) return <span className="text-muted-foreground">Chargement...</span>;
+
+  if (!data) return null
+  // <span className="text-muted-foreground">Chargement...</span>;
 
   return (
     <span className="text-muted-foreground">{data.views} vues</span>
