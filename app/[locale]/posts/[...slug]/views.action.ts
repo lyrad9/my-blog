@@ -35,9 +35,9 @@ export const incrementViews = async (
  if (!clientIP) {
    throw new Error('Unable to retrieve client IP');
  }
- const hashedIP = await hashIP(clientIP);
+//  const hashedIP = await hashIP(clientIP);
   // Vérifier si l'IP a déjà été utilisée pour ce post
-  const IP_KEY = `postview:${slug}:${hashedIP}`;
+  const IP_KEY = `postview:${slug}:${clientIP}`;
   const ipAlreadyViewed = await redis.get(IP_KEY);
 
   if (currentPostCookieDate || ipAlreadyViewed) {
