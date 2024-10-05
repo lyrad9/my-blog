@@ -15,7 +15,7 @@ import { Spacing } from "@/components/Spacing";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { ViewCount } from "./ViewCount";
-
+import { ChevronLeft } from 'lucide-react';
 // export const dynamic = "force-static";
 async function getPostFromParams(slugParams: string[]) {
   console.log("getPostParams", slugParams);
@@ -100,6 +100,9 @@ export default async function PostPage({ params }: PostPageProps) {
                 className="cursor-pointer underline font-semibold hover:text-muted-foreground"
                 href="/posts"
               >
+                <div className="w-10 h-10 rounded-full dark:bg-background flex justify-center items-center">
+                  <ChevronLeft className="text-priamry-foreground" size={16} />
+                </div>
                 {/* {t("back")} */}
               </Link>
 
