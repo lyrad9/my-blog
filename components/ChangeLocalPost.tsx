@@ -10,7 +10,7 @@ export const ChangeLocalPost = ({ params }: PostPageProps) => {
   const slug = params?.slug?.join("/");
   console.log(slug);
 
-  const post = posts.find((post) => post.slugAsParams === slug);
+  const post = posts.find((post) => post.slug === slug);
   console.log(post);
   const locale = useCurrentLocale();
 
@@ -23,13 +23,13 @@ export const ChangeLocalPost = ({ params }: PostPageProps) => {
       <Link
         href={
           locale === "fr"
-            ? `/en/posts/${post?.otherSlug}`
-            : `/fr/posts/${post?.otherSlug}`
+            ? `/en/posts/${post?.translation}`
+            : `/fr/posts/${post?.translation}`
         }
         className="underline"
       >
-        {locale === "fr" && <span>🇬🇧</span>}
-        {locale === "en" && <span>🇫🇷</span>}
+        {locale === "en" && <span>🇬🇧</span>}
+        {locale === "fr" && <span>🇫🇷</span>}
       </Link>
     </div>
   );

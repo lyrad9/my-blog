@@ -10,17 +10,18 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button } from "./ui/button";
+} from "@/src/components/ui/sheet";
+import { Button } from "../src/components/ui/button";
 import { Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
 import { Icons } from "./icons";
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/Theme/Theme-toggle";
+import { Separator } from "@/src/components/ui/separator";
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
@@ -28,7 +29,7 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button className="w-10 px-0 sm:hidden" variant={"outline"} size={"sm"}>
+        <Button className="w-10 px-0 md:hidden" variant={"outline"} size={"sm"}>
           <Menu className="size-5" />
           <span className="sr-only">Toggle theme</span>
         </Button>
@@ -67,15 +68,16 @@ export function MobileNav() {
                 About
               </MobileLink>
             </div>
-            <div className="flex items-center gap-2">
+            <Separator />
+            <div className="flex flex-col gap-2 mt-2">
               <Link
                 className="cursor-pointer"
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noreferrer"
               >
-                <Icons.GithubIcon className="w-4 h-4" />
-                <span className="sr-only">Github</span>
+                
+                <span className="s">Github</span>
               </Link>
               <Link
                 className="cursor-pointer"
@@ -83,12 +85,11 @@ export function MobileNav() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Icons.MailIcon className="w-4 h-4" />
+               Gmail
               </Link>
               <ThemeToggle />
             </div>
           </div>
-         
         </div>
       </SheetContent>
     </Sheet>

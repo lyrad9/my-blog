@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { Section } from "@/components/Section";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/src/components/ui/button";
+import { cn } from "@/src/lib/utils";
 import { getI18n } from "@/locales/server";
 
-const notFound = async() => {
+const notFound = async () => {
   const t = await getI18n();
   return (
     <Section className="flex   justify-center items-center">
@@ -15,9 +15,7 @@ const notFound = async() => {
           404
         </h1>
         <p className="text-primary font-semibold underline">Post not found</p>
-        <p className="mt-4 text-muted-foreground ">
-         {t("noExistPost")}
-        </p>
+        <p className="mt-4 text-muted-foreground ">{t("noExistPost")}</p>
         <div className="mt-6">
           <Link
             href="/posts"
@@ -29,7 +27,7 @@ const notFound = async() => {
             )}
             prefetch={false}
           >
-        {t("seePost")}
+            {t("seePost")}
           </Link>
         </div>
       </div>

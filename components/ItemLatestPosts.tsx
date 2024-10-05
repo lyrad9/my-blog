@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { PostItemProps } from "./post.item";
-import { formatDateToLocal } from "@/lib/utils";
+import { formatDateToLocal } from "@/src/components/utils/functions";
 import { Calendar } from "lucide-react";
 import { useCurrentLocale } from "@/locales/client";
 import { useRouter } from "next/navigation";
@@ -12,10 +12,9 @@ export const ItemLatestPosts = ({
   slug,
   title,
   date,
-  fullDescription,
-}: PostItemProps & {
-  fullDescription: string | undefined;
-}) => {
+  description,
+  categories,
+}: PostItemProps) => {
   const locale = useCurrentLocale();
   const router = useRouter();
   const t = useI18n();
@@ -33,20 +32,17 @@ export const ItemLatestPosts = ({
           </time>
         </dd>
       </dl>
-      <div className="font-semibold text-primary dark:text-primary-foreground">
+      <div className="font-semibold">
         {title}
       </div>
-      <div>
-        <p className="text-muted-foreground"> {fullDescription}</p>
-        <Link
+
+      <p className="text-muted-foreground"> {description}</p>
+      {/* <Link
           href={`posts/${slug}`}
           className="hover:underline transition-all text-primary text-sm"
         >
           {t("readMore")}
-        </Link>
-      </div>
-
-    
+        </Link> */}
     </article>
   );
 };

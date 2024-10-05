@@ -1,3 +1,5 @@
+import Image from "next/image"
+import { join } from "path";
 type IconProps = React.HTMLAttributes<SVGElement>
 export const Icons = {
     GithubIcon:(props:IconProps & {size?:number}) => (

@@ -1,19 +1,54 @@
 ---
 title: Hello Word
-description: This is my first blog post. Really cool.
-fullDescription: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere rem, optio doloribus ratione eum harum accusamus alias officia rerum architecto laboriosam! Aperiam recusandae numquam quo facilis accusantium ut reiciendis incidunt.
+description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, qui aliquam quidem assumenda quod reiciendis accusamus sit minus nisi, quo nam possimus hic vero temporibus debitis cupiditate quas tenetur! Fugiat!
 date: 2024-09-09
 lang: en
-
-otherSlug: bonjour-le-monde
+meta:
+  keywords:
+    - hello
+categories: 
+  - javaScript
+  - story
+translation: bonjour-le-monde
 published: true
-
 ---
 # ddddddddddddddd
 
-```js myfile.js
-const add = (a, b) => a + b;
+```ts showLineNumbers {2-4} title="isEven.ts" /console/ caption="Im a caption"
+function isEven(number:string):string {
+  if (number === 1) {
+    return false;
+  } else if (number === 2) {
+    return true;
+  } else if (number === 3) {
+    return false;
+  } else if (number === 4) {
+    return true;
+  } else if (number === 5) {
+    return false;
+  } else if (number === 6) {
+    return true;
+  } else if (number === 7) {
+    return false;
+  } else if (number === 8) {
+    return true;
+  } else if (number === 9) {
+    return false;
+  } else if (number === 10) {
+    return true;
+  } else {
+    return "Number is not between 1 and 10.";
+  }
+}
 
+// Example usage:
+console.log(isEven(3)); // Should return false
+console.log(isEven(4)); // Should return true
+console.log(isEven(11)); // Should return "Number is not between 1 and 10."
+```
+
+```js myfile.js showLineNumbers {1}
+const add = (a, b) => a + b; 
 console.log(add(1, 2)); // [!code highlight]
 ```
 🔨
@@ -25,6 +60,8 @@ H~2~O
 - [Indent](#indent)
 - [Center](#center)
 - [Color](#color)
+
+
 Some of these words <ins>will be underlined</ins>.
 
     Copyright (©) — &copy;
@@ -60,24 +97,66 @@ Some of these words <ins>will be underlined</ins>.
 </figure>
 
 ```js {4} showLineNumbers
-import { useFloating } from "@floating-ui/react";
+import { cn } from "@/lib/utils";
+import { ComponentPropsWithoutRef } from "react";
 
-function MyComponent() {
-  const { refs, floatingStyles } = useFloating();
-
+export const Code = ({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"span">) => {
   return (
-    <>
-      <div ref={refs.setReference} />
-      <div ref={refs.setFloating} style={floatingStyles} />
-    </>
+    <span
+      className={cn(
+        "bg-accent/30 font-mono border border-accent rounded-sm text-primary px-1 py-0.5 hover:bg-accent-50 transition-colors",
+        className
+      )}
+      {...props}
+    />
   );
-}
+};
 ```
 
 
 <Callout type="danger">I am a callout</Callout>
 <Code>Daryl</Code>
-
-
 # Hello World
 
+```ansi
+[0;36m  vite v5.0.0[0;32m dev server running at:[0m
+
+  > Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m
+  > Network: [0;2muse `--host` to expose[0m
+
+  [0;36mready in 125ms.[0m
+
+[0;2m8:38:02 PM[0m [0;36;1m[vite][0m [0;32mhmr update [0;2m/src/App.jsx
+```
+
+Inline ANSI: `> Local: [0;36mhttp://localhost:[0;36;1m3000[0;36m/[0m{:ansi}`
+
+---
+## Links
+
+```mdx
+http://github.com - automatic!
+[GitHub](http://github.com)
+```
+
+http://github.com - automatic!
+[GitHub](http://github.com)
+
+## Blockquotes
+
+```mdx
+As Kanye West said:
+
+> We're living the future so
+> the present is our past.
+```
+http://github.com - automatic!
+Here is a simple footnote[^1]. With some additional text after it.
+
+
+- **useState:** The worm that tempts your components to the surface.
+- **useEffect:** The lure that attracts side-effects and keeps them at bay.
+- **useContext:** The net that gathers global states together, making it easier to share across your component sea.

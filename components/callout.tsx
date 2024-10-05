@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import { getCurrentLocale } from "@/locales/server";
 interface CalloutProps {
   children?: React.ReactNode;

@@ -2,23 +2,23 @@ import * as runtime from "react/jsx-runtime";
 import Image from "next/image";
 import { Callout } from "./callout";
 import { Code } from "./Code";
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import { Suspense } from "react";
-import MarkdownImage from "./MarkdownImage";
+
 import { MdxYouTube } from "@/src/features/MdxYouTube";
 import { MdxPre } from "@/src/features/MdxPre";
+
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   return fn({ ...runtime }).default;
 };
-const components = { 
+const components = {
   Image,
   Callout,
   Code,
-  MarkdownImage,
-  YouTube: MdxYouTube,
-  pre:MdxPre
 
+  YouTube: MdxYouTube,
+  pre: MdxPre,
 
   // h1:({className,...props}) => (
   //   <h1 className={cn(
@@ -36,6 +36,9 @@ interface MdxProps {
 }
 export function MDXContent({ code }: MdxProps) {
   const Component = useMDXComponent(code);
-  return <Suspense fallback={<p>Loading...</p>}><Component  components={components} />;</Suspense>
-  
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <Component components={components} />;
+    </Suspense>
+  );
 }

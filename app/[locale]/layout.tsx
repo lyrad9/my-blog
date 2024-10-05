@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
+import "../../styles/mdx.css";
 import { Anek_Telugu } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import { ThemeProvider } from "@/Theme/ThemeProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Providers } from "./providers";
@@ -39,7 +40,6 @@ export default function RootLayout({
     locale: string;
   };
 }>) {
-  setStaticParamsLocale(params.locale);
   return (
     <html lang="en" className="w-full min-h-screen scroll-pt-[3.5rem]">
       <body

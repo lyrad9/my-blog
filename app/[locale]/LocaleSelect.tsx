@@ -6,9 +6,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+} from "@/src/components/ui/dropdown-menu";
+import { Button } from "@/src/components/ui/button";
+import { cn } from "@/src/lib/utils";
 
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -57,7 +57,6 @@ export const LocaleSelect = () => {
         <DropdownMenuItem onClick={() => getPostInOtherLang("en")}>
           <span>🇬🇧</span>
         </DropdownMenuItem>
-     
       </DropdownMenuContent>
     </DropdownMenu>
   );

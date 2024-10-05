@@ -2,7 +2,8 @@ import rehypeShiki from "@shikijs/rehype";
 import { transformerNotationHighlight } from "@shikijs/transformers";
 import type { ShikiTransformer } from "shiki/core";
 import type { PluggableList } from "unified";
-
+import rehypeSlug from "rehype-slug";
+import rehypePrettyCode from "rehype-pretty-code";
 const getFileName = (raw?: string): string | null => {
   if (!raw) return null;
 
@@ -45,11 +46,21 @@ const transformerMetadataLanguageClassName = (): ShikiTransformer => {
 const shikiPlugin = [
   rehypeShiki,
 
+  //  [ rehypePrettyCode],
+  //  [
+
+  //   {
+  //     behavior: "wrap",
+  //     properties: {
+  //       className: ["subheading-anchor"],
+  //       ariaLabel: "Link to section",
+  //     },
+  //   },
+  // ],
   {
     theme: "github-light",
 
     transformers: [
-      
       transformerNotationHighlight(),
       transformerMetadataLanguageClassName(),
     ],

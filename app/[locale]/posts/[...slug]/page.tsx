@@ -1,11 +1,11 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-components";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/src/components/ui/separator";
 import { getCurrentLocale } from "@/locales/server";
 import { notFound } from "next/navigation";
 import { ChangeLocalPost } from "@/components/ChangeLocalPost";
 import { Section } from "@/components/Section";
-import { formatDateToLocal, formateDate } from "@/lib/utils";
+import { formatDateToLocal } from "@/src/components/utils/functions";
 import { getI18n } from "@/locales/server";
 import Link from "next/link";
 import { Code } from "@/components/Code";
@@ -14,13 +14,15 @@ import { getStaticParams } from "@/locales/server";
 import { Spacing } from "@/components/Spacing";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { ViewCount } from "./ViewCount";
+
 // export const dynamic = "force-static";
-async function getPostFromParams( slugParams: string[]) {
-  console.log("getPostParams",slugParams);
+async function getPostFromParams(slugParams: string[]) {
+  console.log("getPostParams", slugParams);
   const slug = slugParams?.join("/");
   console.log(slug);
-  const post = posts.find((post) => post.slugAsParams === slug);
-console.log("post",post)
+  const post = posts.find((post) => post.slug === slug);
+  console.log("post", post);
   return post;
 }
 
@@ -36,33 +38,32 @@ export async function generateMetadata({
     };
   }
 
-  // const ogSearchParams = new URLSearchParams();
-  // ogSearchParams.set("title", post.title);
-
   return {
     title: post.title,
     description: post.description,
-    authors: { name: siteConfig.author },
-    // openGraph: {
-    //   title: post.title,
-    //   description: post.description,
-    //   type: "article",
-    //   url: post.slug,
-    //   images: [
-    //     {
-    //       url: `/api/og?${ogSearchParams.toString()}`,
-    //       width: 1200,
-    //       height: 630,
-    //       alt: post.title,
-    //     },
-    //   ],
-    // },
-    // twitter: {
-    //   card: "summary_large_image",
-    //   title: post.title,
-    //   description: post.description,
-    //   images: [`/api/og?${ogSearchParams.toString()}`],
-    // },
+    authors: [{ name: siteConfig.author }],
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url: `https://darylblog/${post.slug}/vercel.app`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+    alternates: post.versions
+      ? {
+          languages: Object.entries(post.versions).reduce(
+            (acc, [lang, url]) => {
+              acc[lang as "fr" | "en"] = url;
+              return acc;
+            },
+            {} as Record<"fr" | "en", string>
+          ),
+        }
+      : {},
   };
 }
 
@@ -74,18 +75,14 @@ export interface PostPageProps {
 }
 
 export async function generateStaticParams() {
-  // : Promise<
-  //   { slug: string[] }[]
-
-  // >
+  // : Promise<{ slug: string[] }[]>
   //return getStaticParams();
-  return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
+  return posts.map((post) => ({ slug: post.slug.split("/") }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {
   setStaticParamsLocale(params.locale);
   console.log(params);
-
   const t = await getI18n();
 
   const post = await getPostFromParams(params.slug);
@@ -94,35 +91,33 @@ export default async function PostPage({ params }: PostPageProps) {
   }
   return (
     <Section>
-         <Spacing size="md" />
-      <article className="">
+      <Spacing size="md" />
+      <article className="article">
         <div className="grid gap-3">
           <div>
-            <div className="flex items-center gap-2">
-              <Link className="hover:text-muted-foreground" href="/posts">
-                <span className="cursor-pointer underline font-semibold">
-                  {t("back")}
-                </span>
+            <div className="flex gap-2">
+              <Link
+                className="cursor-pointer underline font-semibold hover:text-muted-foreground"
+                href="/posts"
+              >
+                {/* {t("back")} */}
               </Link>
 
-              <div className="w-1 h-1 bg-foreground dark:bg-primary-foreground rounded-full" />
-              <span> {new Date(post.date).toLocaleDateString()}</span>
-              {post.otherSlug && <ChangeLocalPost params={params} />}
+              <span className="text-muted-foreground">
+                {" "}
+                {new Date(post.date).toLocaleDateString()} | {<ViewCount slug={post.slug} />}
+              </span>
+
+
+              {post.translation && <ChangeLocalPost params={params} />}
             </div>
           </div>
-          <div className="max-w-2xl">
-            <h1 className="m-none text-6xl max-sm:text-3xl font-bold ">
-              {" "}
-              {post.title}
-            </h1>
-          </div>
+          <h1 className=" text-5xl max-sm:text-3xl font-bold">{post.title}</h1>
 
           <p className="text-sm text-muted-foreground">
             {t("whoAndWhenWrittenPost", {
               author: (
-                <span className=" text-primary underline font-bold">
-                  Ngako Daryl
-                </span>
+                <span className="  underline font-bold">Ngako Daryl</span>
               ),
               date: formatDateToLocal(
                 post.date,
@@ -130,23 +125,23 @@ export default async function PostPage({ params }: PostPageProps) {
               ),
             })}
           </p>
+          <div className="flex max-sm:flex-col max-sm:gap-2 justify-between">
+            <div className="flex gap-2">
+              <Code className="px-1 rounded-md text-sm text-blue-900 dark:text-blue-500">
+                {post.lang === "fr" ? "Version française" : "English version"}
+              </Code>
 
-          <p>
-            {post.lang === "fr" && (
-              <Code className="text-sm text-blue-500 dark:text-blue-500">
-                version française
+              <Code className="rounded-md text-primary text-sm px-1 py-0">
+                {post.categories.join(",")}
               </Code>
-            )}
-            {post.lang === "en" && (
-              <Code className="text-sm text-foreground text-blue-500 dark:text-blue-500">
-                english version
-              </Code>
-            )}
-          </p>
+            </div>
+          </div>
         </div>
 
         <Separator className="my-4" />
-        <MDXContent code={post.body} />
+        <div className="text-muted-foreground">
+          <MDXContent code={post.body} />
+        </div>
       </article>
       <Spacing size="md" />
     </Section>
