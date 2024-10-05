@@ -71,11 +71,11 @@ const sortedPosts = sortPosts(displayPosts)
           </h1>
 
           <Separator className="mt-4" />
-          {sortedPosts.length === 0 ? (
+          {/* {sortedPosts.length === 0 ? (
             <div className="w-full mt-8 flex justify-center items-center">
               Aucun post trouvé
             </div>
-          ) : (
+          ) : ( */}
             <ul className="flex flex-col gap-8">
               {sortedPosts.map((post) => {
                 const { slug, date, title, description, categories } = post;
@@ -92,7 +92,8 @@ const sortedPosts = sortPosts(displayPosts)
                 );
               })}
             </ul>
-          )}
+            
+          {/* )} */}
         </div>
       </div>
 
