@@ -1,5 +1,5 @@
 "use client";
-import { CopyPasteButton } from "@/app/[locale]/posts/[...slug]/CopyPasteButton";
+import CopyPasteButton from "./CopyPasteButton";
 import { cn } from "@/src/lib/utils";
 import { ComponentPropsWithoutRef, useRef } from "react";
 import clsx from "clsx";
@@ -36,6 +36,7 @@ export const MdxPre = ({ children, className, ...props }: MdxPreProps) => {
          
           ) : null}
           <CopyPasteButton
+          
             getTextContent={() => {
               const textContent = ref.current?.textContent;
               if (!textContent) return " ";
