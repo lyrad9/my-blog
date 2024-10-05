@@ -29,7 +29,9 @@ export const Footer = () => {
             <div className="flex flex-col gap-2 flex-[3]">
               <p className="font-bold">Best posts</p>
               {favouritePosts.map((favourite) => (
-                <Link className="dark:text-primary-foreground text-primary hover:underline" href={`/posts/${favourite.slug}`}>{favourite.title}</Link>
+                <Link 
+                key={favourite.slug}
+                className="dark:text-primary-foreground text-primary hover:underline" href={`/posts/${favourite.slug}`}>{favourite.title}</Link>
               ))}
             </div>
             <div className="flex gap-2 flex-col flex-1 ">
