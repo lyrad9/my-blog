@@ -5,7 +5,7 @@ import { getCurrentLocale } from "@/locales/server";
 import { notFound } from "next/navigation";
 import { ChangeLocalPost } from "@/components/ChangeLocalPost";
 import { Section } from "@/components/Section";
-import { formatDateToLocal } from "@/src/components/utils/functions";
+import { formatDateToLocal, formateDate } from "@/src/components/utils/functions";
 import { getI18n } from "@/locales/server";
 import Link from "next/link";
 import { Code } from "@/components/Code";
@@ -111,7 +111,7 @@ export default async function PostPage({ params }: PostPageProps) {
             <div className="flex gap-2">
               <span className="text-muted-foreground">
                 {" "}
-                {new Date(post.date).toLocaleDateString()} |{" "}
+                { formateDate(post.date)} 
                 {/* {<ViewCount slug={post.slug} />} */}
                 {views}
               </span>
