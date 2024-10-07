@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 import { Redis } from '@upstash/redis';
 import { redis } from '@/src/lib/redis';
 // const redis = Redis.fromEnv();
 // export const runtime = 'edge';
-
+import crypto from "crypto";
+import { headers } from "next/headers";
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const body = await req.json();
   let slug: string | undefined = undefined;
@@ -15,7 +15,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return new NextResponse('Slug not found', { status: 400 });
   }
   const KEY = `postview:${body.slug}`;
-  const ip = req.ip;
+  const headersList = headers();
+  const forwardedFor = headersList.get("x-forwarded-for");
+  const realIp = headersList.get("x-real-ip");
+
+  const ipSource = forwardedFor || realIp || "localhost";
+
+  const ip = ipSource.split(",")[0].trim();
+
+  const hashedIp = crypto.createHash("sha256").update(ip).digest("hex");
+
+  //const ip = req.ip;
   //if (ip) {
     // Hash the IP in order to not store it directly in your db.
     const buf = await crypto.subtle.digest(
