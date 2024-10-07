@@ -39,33 +39,20 @@ export const incrementViews = async (
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 
-  // deduplicate the ip for each slug
-  // const isNew = await redis.set(["deduplicate", hash, slug].join(":"), true, {
-  //   nx: true,
-  //   ex: 24 * 60 * 60,
-  // });
-  // if (isNew) {
-  //   const newViewCount= await redis.incr(KEY);
-  //   return { views: Number(newViewCount) }
-  // } else {
-  //  return {
-  //     views: Number(await redis.get(KEY)),
-  //   }
-  // }
-  const ipAlreadyViewed = await redis.get(
-    ["deduplicate", hash, slug].join(":")
-  );
-  if (ipAlreadyViewed) {
-    return {
-      views: Number(await redis.get(KEY)),
-    };
-  }
+  //deduplicate the ip for each slug
   const isNew = await redis.set(["deduplicate", hash, slug].join(":"), true, {
-       nx: true,
-       ex: 24 * 60 * 60,
-     });
-  const newViewCount = await redis.incr(KEY);
-  return { views: Number(newViewCount) };
+    nx: true,
+    ex: 24 * 60 * 60,
+  });
+  if (isNew) {
+    const newViewCount= await redis.incr(KEY);
+    return { views: Number(newViewCount) }
+  } else {
+   return {
+      views: Number(await redis.get(KEY)),
+    }
+  }
+  
   // }
 };
 //  // Obtenir et hasher l'adresse IP de l'utilisateur
