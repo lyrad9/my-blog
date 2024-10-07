@@ -19,6 +19,7 @@ import { ChevronLeft } from "lucide-react"
 import { redis } from "@/src/lib/redis";
 import { ReportView } from "./view";
 // export const dynamic = "force-static";
+export const revalidate = 0;
 async function getPostFromParams(slugParams: string[]) {
   console.log("getPostParams", slugParams);
   const slug = slugParams?.join("/");
