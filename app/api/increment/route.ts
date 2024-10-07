@@ -14,7 +14,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!slug) {
     return new NextResponse('Slug not found', { status: 400 });
   }
-  const KEY = `postview:${slug}`;
+  const KEY = `postview:${body.slug}`;
   const ip = req.ip;
   //if (ip) {
     // Hash the IP in order to not store it directly in your db.
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return new NextResponse(null, { status: 202 });
      
     }
-    
+
     if (!isNew) {
       new NextResponse(null, { status: 202 });
     }
