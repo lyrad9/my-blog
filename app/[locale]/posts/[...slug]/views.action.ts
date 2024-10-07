@@ -1,3 +1,4 @@
+"use server"
 import { redis } from "@/src/lib/redis";
 import crypto from "crypto";
 import { headers } from "next/headers";
