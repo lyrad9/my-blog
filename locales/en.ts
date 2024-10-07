@@ -13,7 +13,7 @@ export default {
   careerDaily:
     "I spend my time creating web content using mainly technologies like {nextjs}, {tailwind}, {react}, etc. The world is so vast that i'm  never done discovering. When i'm not learning, i get bored ({emoji}). I'm considering creating a training platform so i can better share my experience.",
   readArticle: "Read this article",
-  readMore: "Read more",
+  readMore: "Read article",
   seePost: "see posts",
   seeMyPosts: "My posts",
   noExistPost: "Sorry, this article does not exist!",

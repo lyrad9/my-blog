@@ -6,7 +6,7 @@ import { Calendar } from "lucide-react";
 import { useCurrentLocale } from "@/locales/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { ChevronRight } from "lucide-react";
 import { useI18n, useScopedI18n } from "@/locales/client";
 export const ItemLatestPosts = ({
   slug,
@@ -21,13 +21,14 @@ export const ItemLatestPosts = ({
   return (
     <article
       onClick={() => router.push(`posts/${slug}`)}
-      className="cursor-pointer grid gap-2"
+      className="cursor-pointer grid gap-2 p-8 hover:bg-muted-foreground/10 rounded-2xl"
     >
       <dl>
         <dt className="sr-only">Published on</dt>
-        <dd className="font-caption text-slate-500 dark:text-slate-300 flex gap-1 underline">
-          <Calendar className="h-4 w-4" />
-          <time className="" dateTime={date}>
+        <dd className="inline-flex items-center justify-center text-sm font-caption text-slate-500 dark:text-slate-300">
+          {/* <Calendar className="h-4 w-4" /> */}
+          <span className="mr-2">|</span>
+          <time className=""  dateTime={date}>
             {formatDateToLocal(date, locale === "fr" ? "fr-FR" : "en-EN")}
           </time>
         </dd>
@@ -37,12 +38,14 @@ export const ItemLatestPosts = ({
       </div>
 
       <p className="text-muted-foreground"> {description}</p>
-      {/* <Link
+      <Link
           href={`posts/${slug}`}
-          className="hover:underline transition-all text-primary text-sm"
+          className="w-fit gap-1.5 flex justify-center items-center transition-all text-primary text-sm"
         >
-          {t("readMore")}
-        </Link> */}
+          <span> {t("readMore")}</span>
+         
+          <ChevronRight size={12} />
+        </Link>
     </article>
   );
 };

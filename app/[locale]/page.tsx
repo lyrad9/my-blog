@@ -35,7 +35,7 @@ export default async function Home() {
         </div>
       </div>
       <Spacing size="lg" />
-      <div className="flex max-md:flex-col max-md:gap-8">
+      <div className="flex max-md:flex-col gap-8 ">
         <LatestPosts className="flex-[3]" />
         <CategoriesPosts className="flex-1" />
       </div>
