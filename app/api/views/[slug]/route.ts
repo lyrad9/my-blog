@@ -6,7 +6,7 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
   const slug = params.slug;
 
   // Appeler la fonction incrementViews avec la requête pour traiter l'IP
-  const result = await incrementViews(slug, req);
+  const result = await incrementViews(slug);
 
   return NextResponse.json({ views: result.views });
 }
