@@ -26,7 +26,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       .join('');
 
     // deduplicate the ip for each slug
-    const isNew = await redis.set(['deduplicate', hash, slug].join(':'), true, {
+    const isNew = await redis.set(['ip', hash, slug].join(':'), true, {
       nx: true,
       ex: 24 * 60 * 60,
     });
@@ -35,6 +35,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
   }
   console.log("test 1")
-  await redis.incr(['pageviews', 'posts', slug].join(':'));
+  await redis.incr(`postview:${slug}`);
   return new NextResponse(null, { status: 202 });
 }

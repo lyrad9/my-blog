@@ -4,12 +4,7 @@ import { NextRequest } from "next/server";
 import { redis } from "@/src/lib/redis";
 import { cookies } from "next/headers";
 import { headers } from 'next/headers';
-// Fonction pour hasher l'adresse IP avec bcrypt
-const hashIP = async (ipAddress: string) => {
-  const saltRounds = 10; // Nombre de tours pour le salt
-  return await bcrypt.hash(ipAddress, saltRounds);
-};
-
+   
 // Récupérer l'adresse IP de la requête
 const getClientIP = (req: NextRequest) => {
   // On récupère l'adresse IP à partir de l'en-tête 'x-forwarded-for' ou 'x-real-ip' (pour certains reverse proxies)
@@ -48,11 +43,6 @@ export const incrementViews = async (
     };
   }
 
-  // if (currentPostCookieDate) {
-  //   return {
-  //     views: Number(await redis.get(KEY)),
-  //   };
-  // }
 
   const newViewCount = await redis.incr(KEY);
   cookieList.set(`postview:${slug}`, new Date().toISOString(), {

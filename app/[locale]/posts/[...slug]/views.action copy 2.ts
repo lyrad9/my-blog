@@ -29,6 +29,7 @@ export const incrementViews = async (
   const headersList = headers();
   const ip = headersList.get("request-ip");
   const KEY = `postview:${slug}`;
+  
   console.log(ip);
   // if(ip){
   const buf = await crypto.subtle.digest(
@@ -37,7 +38,7 @@ export const incrementViews = async (
   );
   const hash = Array.from(new Uint8Array(buf))
     .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+    .join("")
 
   //deduplicate the ip for each slug
   const isNew = await redis.set(["KEY", hash, slug].join(":"), true, {
@@ -55,33 +56,3 @@ export const incrementViews = async (
   
   // }
 };
-//  // Obtenir et hasher l'adresse IP de l'utilisateur
-//  const clientIP = getClientIP(req);
-//  if (!clientIP) {
-//    throw new Error('Unable to retrieve client IP');
-//  }
-
-//   // Vérifier si l'IP a déjà été utilisée pour ce post
-//   const IP_KEY = `postview:${slug}:${clientIP}`;
-//   const ipAlreadyViewed = await redis.get(IP_KEY);
-
-//   if ( ipAlreadyViewed) {
-//     // Si le cookie existe ou l'IP a déjà été utilisée, retourner le nombre de vues actuel
-//     return {
-//       views: Number(await redis.get(KEY)),
-//     };
-//   }
-
-//   const newViewCount = await redis.incr(KEY);
-//   cookieList.set(`postview:${slug}`, new Date().toISOString(), {
-//     path: "/",
-//     maxAge: 60 * 60 * 12,
-//     httpOnly: true,
-//   });
-
-//   // Définir une entrée Redis pour limiter les vues par IP pendant 12 heures
-//   await redis.set(IP_KEY, true,{
-//     ex:60 * 60 * 12
-//   } ); // Expiration dans 12 heures
-
-//   return { views: Number(newViewCount) };

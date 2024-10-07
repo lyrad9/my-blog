@@ -15,7 +15,9 @@ import { Spacing } from "@/components/Spacing";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { ViewCount } from "./ViewCount";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react"
+import { redis } from "@/src/lib/redis";
+import { ReportView } from "./view";
 // export const dynamic = "force-static";
 async function getPostFromParams(slugParams: string[]) {
   console.log("getPostParams", slugParams);
@@ -89,8 +91,10 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post || !post?.published) {
     notFound();
   }
+  const views =(await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
     <Section>
+        <ReportView slug={post.slug} />
       <Spacing size="md" />
       <article className="article">
         <div className="grid gap-3">
@@ -107,7 +111,8 @@ export default async function PostPage({ params }: PostPageProps) {
               <span className="text-muted-foreground">
                 {" "}
                 {new Date(post.date).toLocaleDateString()} |{" "}
-                {<ViewCount slug={post.slug} />}
+                {/* {<ViewCount slug={post.slug} />} */}
+                {views}
               </span>
 
               {post.translation && <ChangeLocalPost params={params} />}
