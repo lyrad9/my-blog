@@ -14,8 +14,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!slug) {
     return new NextResponse('Slug not found', { status: 400 });
   }
+  const KEY = `postview:${slug}`;
   const ip = req.ip;
-  if (ip) {
+  //if (ip) {
     // Hash the IP in order to not store it directly in your db.
     const buf = await crypto.subtle.digest(
       'SHA-256',
@@ -30,10 +31,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       nx: true,
       ex: 24 * 60 * 60,
     });
+    if (isNew) {
+      await redis.incr(KEY);
+      return new NextResponse(null, { status: 202 });
+    } else {
+    
+      return new NextResponse(null, { status: 202 });
+     
+    }
+    
     if (!isNew) {
       new NextResponse(null, { status: 202 });
     }
-  }
+ // }
   console.log("test 1")
   await redis.incr(`postview:${slug}`);
   return new NextResponse(null, { status: 202 });
