@@ -10,6 +10,7 @@ import { Section } from "@/components/Section";
 import { CategoriesPosts } from "@/src/features/CategoriesPosts";
 import { useCurrentLocale } from "@/locales/client";
 import { Post } from "#site/content";
+import { useSearchParams } from "next/navigation";
 const BlogPage = async({
   searchParams,
 }: {
@@ -17,48 +18,26 @@ const BlogPage = async({
 }) => {
   // const t = await getI18n();
   const locale = getCurrentLocale();
-  let displayPosts:Post[] = []
-  if (searchParams && searchParams?.category) {
-    displayPosts =  posts.filter(
-      (post) =>
-        post.published &&
-        post.lang === locale &&
-        post.categories.includes(searchParams?.category as string)
-    )
+  const category = searchParams?.category
+ const filteredPosts = category ? posts.filter(
+  (post) =>
+    post.published &&
+    post.lang === locale &&
+    post.categories.includes(searchParams?.category as string)
+) : posts
+  // if (searchParams && searchParams?.category) {
+  //   displayPosts =  posts.filter(
+  //     (post) =>
+  //       post.published &&
+  //       post.lang === locale &&
+  //       post.categories.includes(searchParams?.category as string)
+  //   )
  
-  } else {
-    displayPosts = posts.filter((post) => post.published && process.env.NODE_ENV === "development" && post.lang === locale)
+  // } else {
+  //   displayPosts = posts.filter((post) => post.published && process.env.NODE_ENV === "development" && post.lang === locale)
   
-  }
-const sortedPosts = sortPosts(displayPosts)
-
-//     if (searchParams?.category) {
-//       const postes =  posts.filter(
-//         (post) =>
-//           post.published &&
-//           post.lang === locale &&
-//           post.categories.includes(searchParams?.category as string)
-//       )
-//       setDisplayPosts(postes);
-//     } else {
-//       const postes = posts.filter((post) => post.published && post.lang === locale)
-//       setDisplayPosts(postes);
-//     }
-   
-//   },[searchParams?.category])
-//   const [displayPosts, setDisplayPosts] = React.useState<Post[]>([]);
-//   console.log(displayPosts.length)
- 
-//  React.useEffect(()=>{
-//   return () =>{
-//     setDisplayPosts([])
-//   }
-//  },[])
-//   // const sortedPosts = sortPosts(displayPosts);
-
-  // const displayPosts = sortedPosts;
-  console.log(searchParams?.category);
-  console.log(displayPosts.length)
+  // }
+const sortedPosts = sortPosts(filteredPosts)
 
   return (
     <Section>
