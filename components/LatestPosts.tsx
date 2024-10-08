@@ -13,7 +13,8 @@ export const LatestPosts = async ({ className }: { className?: string }) => {
     posts.filter(
       (post) =>
         post.published &&
-        process.env.NODE_ENV === "development" &&
+        // process.env.NODE_ENV === "development"
+         &&
         post.lang === locale
     )
   );

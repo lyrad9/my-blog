@@ -24,14 +24,14 @@ const BlogPage = async ({
     ? posts.filter(
         (post) =>
           post.published &&
-          process.env.NODE_ENV === "development" &&
+          // process.env.NODE_ENV === "development" &&
           post.lang === locale &&
           post.categories.includes(searchParams?.category as string)
       )
     : posts.filter(
         (post) =>
           post.published &&
-          process.env.NODE_ENV === "development" &&
+          // process.env.NODE_ENV === "production" &&
           post.lang === locale
       );
 
