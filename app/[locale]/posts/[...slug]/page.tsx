@@ -99,7 +99,7 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post || !post?.published) {
     notFound();
   }
-  const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
+  // const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
     <Section>
       
@@ -129,7 +129,7 @@ export default async function PostPage({ params }: PostPageProps) {
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               {<ViewCount slug={post.slug} />}
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
-              <span className="text-muted-foreground">
+              {/* <span className="text-muted-foreground">
                 <span>
                   {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
                     views
@@ -139,7 +139,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 <Heart className={cn(buttonVariants({
                   variant:"outline"
                 }))} />
-              </span>
+              </span> */}
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               <span>{<ChangeLocalPost params={params} />}</span>
             </div>
