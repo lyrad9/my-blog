@@ -21,7 +21,7 @@ export const ItemLatestPosts = ({
   return (
     <article
       onClick={() => router.push(`posts/${slug}`)}
-      className="cursor-pointer grid gap-2 p-8 hover:bg-muted-foreground/10 rounded-2xl"
+      className="cursor-pointer grid gap-2 p-8 sm:hover:bg-muted-foreground/10 rounded-2xl"
     >
       <dl>
         <dt className="sr-only">Published on</dt>
