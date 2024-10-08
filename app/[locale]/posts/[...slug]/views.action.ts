@@ -7,7 +7,7 @@ export async function incrementViews(slug: string) {
   const forwardedFor = headersList.get("x-forwarded-for");
   const realIp = headersList.get("x-real-ip");
   // const ipSource = forwardedFor || realIp;
-const ipSource = forwardedFor ? forwardedFor.split(',')[0] : realIp
+  const ipSource = forwardedFor ? forwardedFor.split(",")[0] : realIp;
   const ip = ipSource?.split(",")[0].trim();
   const buf = await crypto.subtle.digest(
     "SHA-256",
@@ -23,9 +23,12 @@ const ipSource = forwardedFor ? forwardedFor.split(',')[0] : realIp
 
   const ipViewKey = ["ip", hash, slug].join(":");
 
-  const hasViewed = await redis.get(ipViewKey);
-
-  if (!hasViewed) {
+  // const hasViewed = await redis.get(ipViewKey);
+  const hasViewed = await redis.set(ipViewKey, true, {
+    nx: true,
+    ex: 24 * 60 * 60,
+  });
+  if (hasViewed) {
     const newViewCount = await redis.incr(viewKey);
     return { views: Number(newViewCount) };
   } else {
