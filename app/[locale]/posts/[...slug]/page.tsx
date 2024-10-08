@@ -102,7 +102,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
     <Section>
-      <ReportView slug={post.slug} />
+      
       <Spacing size="md" />
       <article className="article">
         <div className="grid gap-3">
@@ -124,17 +124,10 @@ export default async function PostPage({ params }: PostPageProps) {
             <div className="text-sm flex flex-row space-x-2 items-center">
               <span className="text-muted-foreground">
                 {formateDate(post.date)}
-                {/* {<ViewCount slug={post.slug} />} */}
+               
               </span>
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
-              <span className="text-muted-foreground">
-                <span>
-                  {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
-                    views
-                  )}{" "}
-                  {" views"}
-                </span>
-              </span>
+              {<ViewCount slug={post.slug} />}
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               <span className="text-muted-foreground">
                 <span>

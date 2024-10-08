@@ -16,7 +16,15 @@ export const ViewCount = ({ slug }: { slug: string }) => {
   // <span className="text-muted-foreground">Chargement...</span>;
 
   return (
-    <span className="text-muted-foreground">{viewCount.data.views} vues</span>
+    <span className="text-muted-foreground">
+    <span>
+      {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
+       viewCount.data.views
+      )}{" "}
+      {" views"}
+    </span>
+  </span>
+   
   );
 };
 

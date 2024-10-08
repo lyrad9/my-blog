@@ -2,8 +2,6 @@
 import { redis } from "@/src/lib/redis";
 import crypto from "crypto";
 import { headers } from "next/headers";
-
-
 export async function incrementViews(slug: string) {
   const headersList = headers();
   const forwardedFor = headersList.get("x-forwarded-for");
