@@ -14,7 +14,7 @@ export const LatestPosts = async ({ className }: { className?: string }) => {
       (post) =>
         post.published &&
         // process.env.NODE_ENV === "development"
-         &&
+       //  &&
         post.lang === locale
     )
   );

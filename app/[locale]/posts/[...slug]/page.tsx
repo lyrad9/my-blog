@@ -22,6 +22,9 @@ import { ChevronLeft } from "lucide-react";
 import { redis } from "@/src/lib/redis";
 import { ReportView } from "./view";
 import { ArrowLeft } from "lucide-react";
+import { Heart } from "lucide-react";
+import { buttonVariants } from "@/src/components/ui/button";
+import { cn } from "@/src/lib/utils";
 // export const dynamic = "force-static";
 export const revalidate = 0;
 async function getPostFromParams(slugParams: string[]) {
@@ -131,6 +134,18 @@ export default async function PostPage({ params }: PostPageProps) {
                   )}{" "}
                   {" views"}
                 </span>
+              </span>
+              <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
+              <span className="text-muted-foreground">
+                <span>
+                  {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
+                    views
+                  )}{" "}
+                
+                </span>
+                <Heart className={cn(buttonVariants({
+                  variant:"outline"
+                }))} />
               </span>
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               <span>{<ChangeLocalPost params={params} />}</span>
