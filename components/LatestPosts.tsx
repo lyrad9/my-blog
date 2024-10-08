@@ -5,11 +5,17 @@ import { sortPosts } from "@/src/components/utils/functions";
 import { useCurrentLocale } from "@/locales/client";
 import { ItemLatestPosts } from "./ItemLatestPosts";
 import { getCurrentLocale, getI18n } from "@/locales/server";
+import Link from "next/link";
 export const LatestPosts = async ({ className }: { className?: string }) => {
   const t = await getI18n();
   const locale = getCurrentLocale();
   const sortedPosts = sortPosts(
-    posts.filter((post) => post.published && post.lang === locale)
+    posts.filter(
+      (post) =>
+        post.published &&
+        process.env.NODE_ENV === "development" &&
+        post.lang === locale
+    )
   );
   const newestPosts = sortedPosts.slice(0, 3);
   return (
@@ -19,7 +25,7 @@ export const LatestPosts = async ({ className }: { className?: string }) => {
         {newestPosts.map((post) => {
           const { slug, date, title, description, categories } = post;
           return (
-            <div className="" key={slug}>
+            <Link href={`posts/${slug}`} className="" key={slug}>
               <ItemLatestPosts
                 categories={categories}
                 slug={slug}
@@ -27,7 +33,7 @@ export const LatestPosts = async ({ className }: { className?: string }) => {
                 title={title}
                 description={description}
               />
-            </div>
+            </Link>
           );
         })}
       </div>

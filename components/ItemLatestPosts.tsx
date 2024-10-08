@@ -20,7 +20,7 @@ export const ItemLatestPosts = ({
   const t = useI18n();
   return (
     <article
-      onClick={() => router.push(`posts/${slug}`)}
+     
       className="cursor-pointer grid gap-2 p-8 sm:hover:bg-muted-foreground/10 rounded-2xl"
     >
       <dl>

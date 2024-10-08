@@ -12,39 +12,30 @@ import { useCurrentLocale } from "@/locales/client";
 import { Post } from "#site/content";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-const BlogPage = async({
+const BlogPage = async ({
   searchParams,
 }: {
   searchParams?: { category?: string };
 }) => {
   // const t = await getI18n();
   const locale = getCurrentLocale();
-  const category = searchParams?.category
- const filteredPosts = category ? posts.filter(
-  (post) =>
-    post.published &&
-   process.env.NODE_ENV === "development" &&
-    post.lang === locale &&
-    post.categories.includes(searchParams?.category as string)
-) : posts.filter(
-  (post) =>
-    post.published &&
-  process.env.NODE_ENV === "development" &&
-   post.lang === locale
-)
-  // if (searchParams && searchParams?.category) {
-  //   displayPosts =  posts.filter(
-  //     (post) =>
-  //       post.published &&
-  //       post.lang === locale &&
-  //       post.categories.includes(searchParams?.category as string)
-  //   )
- 
-  // } else {
-  //   displayPosts = posts.filter((post) => post.published && process.env.NODE_ENV === "development" && post.lang === locale)
-  
-  // }
-const sortedPosts = sortPosts(filteredPosts)
+  const category = searchParams?.category;
+  const filteredPosts = category
+    ? posts.filter(
+        (post) =>
+          post.published &&
+          process.env.NODE_ENV === "development" &&
+          post.lang === locale &&
+          post.categories.includes(searchParams?.category as string)
+      )
+    : posts.filter(
+        (post) =>
+          post.published &&
+          process.env.NODE_ENV === "development" &&
+          post.lang === locale
+      );
+
+  const sortedPosts = sortPosts(filteredPosts);
 
   return (
     <Section>
@@ -62,23 +53,23 @@ const sortedPosts = sortPosts(filteredPosts)
               Aucun post trouvé
             </div>
           ) : ( */}
-            <div className="flex flex-col gap-8">
-              {sortedPosts.map((post) => {
-                const { slug, date, title, description, categories } = post;
-                return (
-                  <Link href={`posts/${slug}`} className="" key={slug}>
-                    <PostItem
-                      categories={categories}
-                      slug={slug}
-                      date={date}
-                      title={title}
-                      description={description}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-            
+          <div className="flex flex-col gap-8">
+            {sortedPosts.map((post) => {
+              const { slug, date, title, description, categories } = post;
+              return (
+                <Link href={`posts/${slug}`} className="" key={slug}>
+                  <PostItem
+                    categories={categories}
+                    slug={slug}
+                    date={date}
+                    title={title}
+                    description={description}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+
           {/* )} */}
         </div>
       </div>
