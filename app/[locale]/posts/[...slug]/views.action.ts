@@ -6,8 +6,8 @@ export async function incrementViews(slug: string) {
   const headersList = headers();
   const forwardedFor = headersList.get("x-forwarded-for");
   const realIp = headersList.get("x-real-ip");
-  const ipSource = forwardedFor || realIp;
-
+  // const ipSource = forwardedFor || realIp;
+const ipSource = forwardedFor ? forwardedFor.split(',')[0] : realIp
   const ip = ipSource?.split(",")[0].trim();
   const buf = await crypto.subtle.digest(
     "SHA-256",
