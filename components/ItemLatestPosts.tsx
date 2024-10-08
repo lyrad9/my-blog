@@ -40,7 +40,7 @@ export const ItemLatestPosts = ({
       <p className="text-muted-foreground"> {description}</p>
       <Link
           href={`posts/${slug}`}
-          className="w-fit gap-1.5 flex justify-center items-center transition-all text-primary text-sm"
+          className="font-semibold w-fit gap-1.5 flex justify-center items-center transition-all text-slate-500 dark:text-slate-300 text-sm"
         >
           <span> {t("readMore")}</span>
          

@@ -19,18 +19,18 @@ export const ChangeLocalPost = ({ params }: PostPageProps) => {
   console.log(pathname);
   const router = useRouter();
   return (
-    <div>
+   
       <Link
         href={
           locale === "fr"
             ? `/en/posts/${post?.translation}`
             : `/fr/posts/${post?.translation}`
         }
-        className="underline"
+        className={post?.translation ? "underline" : " pointer-events-none"}
       >
         {locale === "en" && <span>🇬🇧</span>}
         {locale === "fr" && <span>🇫🇷</span>}
       </Link>
-    </div>
+   
   );
 };

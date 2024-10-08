@@ -5,7 +5,10 @@ import { getCurrentLocale } from "@/locales/server";
 import { notFound } from "next/navigation";
 import { ChangeLocalPost } from "@/components/ChangeLocalPost";
 import { Section } from "@/components/Section";
-import { formatDateToLocal, formateDate } from "@/src/components/utils/functions";
+import {
+  formatDateToLocal,
+  formateDate,
+} from "@/src/components/utils/functions";
 import { getI18n } from "@/locales/server";
 import Link from "next/link";
 import { Code } from "@/components/Code";
@@ -15,9 +18,10 @@ import { Spacing } from "@/components/Spacing";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { ViewCount } from "./ViewCount";
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft } from "lucide-react";
 import { redis } from "@/src/lib/redis";
 import { ReportView } from "./view";
+import { ArrowLeft } from "lucide-react";
 // export const dynamic = "force-static";
 export const revalidate = 0;
 async function getPostFromParams(slugParams: string[]) {
@@ -92,31 +96,44 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post || !post?.published) {
     notFound();
   }
-  const views =(await redis.get<number>(`postview:${post.slug}`)) ?? 0;
+  const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
     <Section>
-        <ReportView slug={post.slug} />
+      <ReportView slug={post.slug} />
       <Spacing size="md" />
       <article className="article">
         <div className="grid gap-3">
           <div>
-            <Link
-              className="mb-2 w-8 h-8 border rounded-full bg-muted hover:bg-foreground/10 dark:bg-muted/30 dark:hover:bg-muted/50 flex justify-center items-center cursor-pointer "
-              href="/posts"
-            >
-              <ChevronLeft className=" text-muted-foreground dark:text-primary-foreground " size={15} />
-
-              {/* {t("back")} */}
-            </Link>
-            <div className="flex gap-2">
+            <div className="flex flex-row  mb-3 text-sm">
+              <Link
+                href="/posts"
+                className="group flex flex-row items-center space-x-1"
+              >
+                <ArrowLeft
+                  size={18}
+                  className="group-hover:-translate-x-1 duration-300 group-hover:text-muted-foreground"
+                />
+                <span className="group-hover:text-muted-foreground duration-300">
+                  Back
+                </span>
+              </Link>
+            </div>
+            <div className="text-sm flex flex-row space-x-2 items-center">
               <span className="text-muted-foreground">
-                {" "}
-                { formateDate(post.date)} 
+                {formateDate(post.date)}
                 {/* {<ViewCount slug={post.slug} />} */}
-                {views}
               </span>
-
-              {post.translation && <ChangeLocalPost params={params} />}
+              <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
+              <span className="text-muted-foreground">
+                <span>
+                  {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
+                    views
+                  )}{" "}
+                  {" views"}
+                </span>
+              </span>
+              <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
+              <span>{<ChangeLocalPost params={params} />}</span>
             </div>
           </div>
           <h1 className=" text-5xl max-sm:text-3xl font-bold">{post.title}</h1>
@@ -132,17 +149,6 @@ export default async function PostPage({ params }: PostPageProps) {
               ),
             })}
           </p>
-          <div className="flex max-sm:flex-col max-sm:gap-2 justify-between">
-            <div className="flex gap-2">
-              <Code className="px-1 rounded-md text-sm text-blue-900 dark:text-blue-500">
-                {post.lang === "fr" ? "Version française" : "English version"}
-              </Code>
-
-              <Code className="rounded-md text-primary text-sm px-1 py-0">
-                {post.categories.join(",")}
-              </Code>
-            </div>
-          </div>
         </div>
 
         <Separator className="my-4" />

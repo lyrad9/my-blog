@@ -11,6 +11,7 @@ import { CategoriesPosts } from "@/src/features/CategoriesPosts";
 import { useCurrentLocale } from "@/locales/client";
 import { Post } from "#site/content";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 const BlogPage = async({
   searchParams,
 }: {
@@ -22,9 +23,15 @@ const BlogPage = async({
  const filteredPosts = category ? posts.filter(
   (post) =>
     post.published &&
+   process.env.NODE_ENV === "development" &&
     post.lang === locale &&
     post.categories.includes(searchParams?.category as string)
-) : posts
+) : posts.filter(
+  (post) =>
+    post.published &&
+  process.env.NODE_ENV === "development" &&
+   post.lang === locale
+)
   // if (searchParams && searchParams?.category) {
   //   displayPosts =  posts.filter(
   //     (post) =>
@@ -49,17 +56,17 @@ const sortedPosts = sortPosts(filteredPosts)
             Posts
           </h1>
 
-          <Separator className="mt-4" />
+          <Separator className="my-4" />
           {/* {sortedPosts.length === 0 ? (
             <div className="w-full mt-8 flex justify-center items-center">
               Aucun post trouvé
             </div>
           ) : ( */}
-            <ul className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8">
               {sortedPosts.map((post) => {
                 const { slug, date, title, description, categories } = post;
                 return (
-                  <li className="" key={slug}>
+                  <Link href={`posts/${slug}`} className="" key={slug}>
                     <PostItem
                       categories={categories}
                       slug={slug}
@@ -67,10 +74,10 @@ const sortedPosts = sortPosts(filteredPosts)
                       title={title}
                       description={description}
                     />
-                  </li>
+                  </Link>
                 );
               })}
-            </ul>
+            </div>
             
           {/* )} */}
         </div>

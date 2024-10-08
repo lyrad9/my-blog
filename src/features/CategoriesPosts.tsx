@@ -29,7 +29,7 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
   return (
     <section className={className}>
       <p
-        className={clsx("mb-8 font-mono text-xl", 
+        className={clsx("mb-8 font-caption text-xl", 
      pathname.match(/^\/(fr|en)$/) ? "md:text-center " : "tracking-wider",
         )}
       >
@@ -40,7 +40,7 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
           <Link key={index} href={createPostURL(category)}>
             <Code
               className={clsx(
-                "rounded-md border-none text-sm text-muted-foreground dark:bg-accent bg-muted",
+                "px-2 py-1 rounded-sm border-none text-sm text-muted-foreground dark:bg-accent bg-muted",
                 {
                   "dark:text-primary/60 dark:bg-primary/20 bg-primary/10 text-primary ":
                     searchParams.has("category", category),

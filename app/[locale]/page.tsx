@@ -15,11 +15,7 @@ export default async function Home() {
       <Spacing size="md" />
       <div className="flex justify-center">
         <div className="max-w-2xl grid gap-2 ">
-          <h1 className="max-sm:text-start text-center font-bold max-sm:text-3xl text-4xl">
-            {" "}
-            {t("hello")}
-          </h1>
-          <h2 className="font-semibold text-muted-foreground dark:text-primary-foreground/70  text-3xl leading-10 max-sm:text-xl ">
+          <h2 className="font-semibold text-muted-foreground dark:text-primary-foreground/70  text-3xl leading-10 max-sm:text-2xl ">
             {t("welcomeInMyBlog", {
               career: (
                 <Code className="font-sans text-primary dark:text-primary-foreground">

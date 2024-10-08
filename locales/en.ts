@@ -4,10 +4,10 @@ export default {
   back: "Back",
   whoAndWhenWrittenPost: "Written by {author} on {date}",
   newestPosts: "My latest posts",
-  hello: "Hello! I'm Daryl.",
+  // hello: "Hello! I'm Daryl.",
   career: "Software Engineer",
   welcomeInMyBlog:
-    "Welcome to my corner of the web, where i share my thoughts and experiences as a {career} and explore my daily life throught my posts.",
+    "Welcome to my corner of the web, where i share my  experience as a {career} and explore my daily life throught my posts.",
   greetingAbout:
     "Hi! I'm Daryl. I've been enthusiastic about web development since age of 17. I currently reside in Cameroon and love sharing my experience as a web developer.",
   careerDaily:
