@@ -13,8 +13,9 @@ export async function incrementViews(slug: string) {
 
   const hashedIp = crypto.createHash("sha256").update(ip).digest("hex");
 
-  const viewKey = ["pageviews", "blogs", slug].join(":");
-  const ipViewKey = ["ip", hashedIp, "views", slug].join(":");
+  const viewKey =  `postview:${slug}`;
+  // const viewKey = ["pageviews", "blogs", slug].join(":");
+  const ipViewKey = ["ip", hashedIp,slug].join(":");
 
   const hasViewed = await redis.get(ipViewKey);
 
