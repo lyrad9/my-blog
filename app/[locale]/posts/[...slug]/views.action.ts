@@ -8,10 +8,10 @@ export async function incrementViews(slug: string) {
   const realIp = headersList.get("x-real-ip");
   // const ipSource = forwardedFor || realIp;
   const ipSource = forwardedFor ? forwardedFor.split(",")[0] : realIp;
-  const ip = ipSource?.split(",")[0].trim();
+  // const ip = ipSource?.split(",")[0].trim();
   const buf = await crypto.subtle.digest(
     "SHA-256",
-    new TextEncoder().encode(ip ?? undefined)
+    new TextEncoder().encode(ipSource ?? undefined)
   );
   const hash = Array.from(new Uint8Array(buf))
     .map((b) => b.toString(16).padStart(2, "0"))
@@ -21,14 +21,16 @@ export async function incrementViews(slug: string) {
 
   const viewKey = `postview:${slug}`;
 
-  const ipViewKey = ["ip", hash, slug].join(":");
+  const ipViewKey = ["ip", ipSource, slug].join(":");
+
 
   // const hasViewed = await redis.get(ipViewKey);
-  const hasViewed = await redis.set(ipViewKey, true, {
+  const isNew = await redis.set(ipViewKey, true, {
     nx: true,
     ex: 24 * 60 * 60,
   });
-  if (hasViewed) {
+  const post = await redis.get(`postview:${slug}`)
+  if (isNew) {
     const newViewCount = await redis.incr(viewKey);
     return { views: Number(newViewCount) };
   } else {
