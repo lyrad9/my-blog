@@ -25,6 +25,7 @@ import { ArrowLeft } from "lucide-react";
 import { Heart } from "lucide-react";
 import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
+import { LikesCount } from "./LikesCount";
 // export const dynamic = "force-static";
 export const revalidate = 0;
 async function getPostFromParams(slugParams: string[]) {
@@ -129,17 +130,7 @@ export default async function PostPage({ params }: PostPageProps) {
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               {<ViewCount slug={post.slug} />}
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
-              {/* <span className="text-muted-foreground">
-                <span>
-                  {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
-                    views
-                  )}{" "}
-                
-                </span>
-                <Heart className={cn(buttonVariants({
-                  variant:"outline"
-                }))} />
-              </span> */}
+             <LikesCount slug={post.slug} />
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               <span>{<ChangeLocalPost params={params} />}</span>
             </div>
