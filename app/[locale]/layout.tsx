@@ -11,7 +11,7 @@ import { Spacing } from "@/components/Spacing";
 import { Footer } from "@/components/Footer";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "@/locales/server";
-
+import ReactQueryProvider from "@/src/providers/ReactQueryProvider";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -57,13 +57,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Providers locale={params.locale}>
-            <div className="flex min-h-screen bg-background flex-col">
-              <SiteHeader />
+            <ReactQueryProvider>
+              <div className="flex min-h-screen bg-background flex-col">
+                <SiteHeader />
 
-              <main className="flex flex-1">{children}</main>
+                <main className="flex flex-1">{children}</main>
 
-              <Footer />
-            </div>
+                <Footer />
+              </div>
+            </ReactQueryProvider>
           </Providers>
         </ThemeProvider>
       </body>

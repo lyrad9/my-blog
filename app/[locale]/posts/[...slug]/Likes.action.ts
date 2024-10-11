@@ -31,14 +31,6 @@ export async function incrementLikes(slug: string) {
     ex: 24 * 60 * 60,
   });
   const newLikeCount = await redis.incr(viewKey);
-  return { views: Number(newLikeCount) };
-//   const post = await redis.get(`postview:${slug}`)
-//   if (isNew) {
-//     const newViewCount = await redis.incr(viewKey);
-//     return { views: Number(newViewCount) };
-//   } else {
-//     return {
-//       views: Number(await redis.get(viewKey)),
-//     };
-//   }
+  return { likes: Number(newLikeCount) };
+
 }

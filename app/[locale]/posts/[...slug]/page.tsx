@@ -26,6 +26,7 @@ import { Heart } from "lucide-react";
 import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 import { LikesCount } from "./LikesCount";
+import { IncrementLikesCountBtn } from "./IncrementLikesCountBtn";
 // export const dynamic = "force-static";
 export const revalidate = 0;
 async function getPostFromParams(slugParams: string[]) {
@@ -103,7 +104,6 @@ export default async function PostPage({ params }: PostPageProps) {
   // const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
     <Section>
-      
       <Spacing size="md" />
       <article className="article">
         <div className="grid gap-3">
@@ -125,12 +125,11 @@ export default async function PostPage({ params }: PostPageProps) {
             <div className="text-sm flex flex-row space-x-2 items-center">
               <span className="text-muted-foreground">
                 {formateDate(post.date)}
-               
               </span>
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               {<ViewCount slug={post.slug} />}
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
-             <LikesCount slug={post.slug} />
+              <LikesCount slug={post.slug} />
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
               <span>{<ChangeLocalPost params={params} />}</span>
             </div>
@@ -148,6 +147,10 @@ export default async function PostPage({ params }: PostPageProps) {
               ),
             })}
           </p>
+          <div>
+            {" "}
+            <IncrementLikesCountBtn slug={post.slug} />
+          </div>
         </div>
 
         <Separator className="my-4" />
