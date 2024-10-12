@@ -18,22 +18,12 @@ res.headers.set("Access-Control-Allow-Origin","http://localhost:3001")
   console.log(JSON.stringify(recentPosts))
   const response = NextResponse.json({ posts: recentPosts });
     
-  // Ajouter les en-têtes CORS
-  response.headers.set('Access-Control-Allow-Origin', 'http://localhost:3001/');
-  response.headers.set('Access-Control-Allow-Methods', 'GET')
-  response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+    // Ajouter les en-têtes CORS
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
 
-  return response;
-  //  return NextResponse.json({ posts: recentPosts });
+    return response;
+   // return NextResponse.json({ posts: recentPosts });
   }
   
-export async function OPTIONS() {
-    // Répondre aux requêtes OPTIONS (nécessaire pour les requêtes CORS préflight)
-    return new NextResponse(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
