@@ -1,8 +1,8 @@
 import {posts} from "#site/content"
 import { sortPosts } from "@/src/components/utils/functions";
 import { NextResponse,NextRequest } from 'next/server';
-export async function GET(req: NextRequest,res:NextResponse) {
-res.headers.set("Access-Control-Allow-Origin","http://localhost:3001")
+export async function GET(req: NextRequest) {
+// res.headers.set("Access-Control-Allow-Origin","http://localhost:3001")
   const {searchParams} = new URL(req.url)
  const locale = searchParams.get("locale")
 
