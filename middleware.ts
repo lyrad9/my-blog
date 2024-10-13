@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
   }
   i18nResponse.headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   i18nResponse.headers.append("Access-Control-Allow-Headers", "Content-Type");
-   return i18nResponse
+   return i18nResponse                                                                                                                                     
 
 }
  
