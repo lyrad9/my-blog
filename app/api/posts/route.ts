@@ -6,9 +6,11 @@ export async function GET(req: NextRequest) {
   const allowedOrigins = [
     "http://localhost:3000",
     "http://localhost:3001",
-    "https://darylblog.vercel.app",
-   " https://radylb.vercel.app"
+    "http://darylblog.vercel.app",
+   " http://radylb.vercel.app"
   ];
+
+  
   // Récupérer l'origine de la requête
   const origin = req.headers.get("origin");
 
