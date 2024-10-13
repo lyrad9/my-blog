@@ -1,26 +1,27 @@
 import { posts } from "#site/content";
 import { sortPosts } from "@/src/components/utils/functions";
 import { NextResponse, NextRequest } from "next/server";
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://darylblog.vercel.app",
+ "https://radylb.vercel.app"
+];
 export async function GET(req: NextRequest) {
   // Liste blanche des origines autorisées
-  const allowedOrigins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://darylblog.vercel.app",
-   " http://radylb.vercel.app"
-  ];
+  
 
   
   // Récupérer l'origine de la requête
   const origin = req.headers.get("origin");
 
   // Vérifier si l'origine est dans la liste blanche
-  const isAllowedOrigin = allowedOrigins.includes(origin || "");
+  // const isAllowedOrigin = allowedOrigins.includes(origin || "");
 
-  if (!isAllowedOrigin) {
-    // Si l'origine n'est pas autorisée, renvoyer une réponse 403 (Interdit)
-    return new NextResponse("Forbidden", { status: 403 });
-  }
+  // if (!isAllowedOrigin) {
+  //   // Si l'origine n'est pas autorisée, renvoyer une réponse 403 (Interdit)
+  //   return new NextResponse("Forbidden", { status: 403 });
+  // }
 
   const { searchParams } = new URL(req.url);
   const locale = searchParams.get("locale");
@@ -38,11 +39,12 @@ export async function GET(req: NextRequest) {
   const response = NextResponse.json({ posts: recentPosts });
 
   // Ajouter les en-têtes CORS
-  if (isAllowedOrigin) {
-    response.headers.set("Access-Control-Allow-Origin", origin as string);
-    response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-  }
+  // if (isAllowedOrigin) {
+    
+  //   response.headers.set("Access-Control-Allow-Origin", origin as string);
+  //   response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  //   response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+  // }
   return response;
   // return NextResponse.json({ posts: recentPosts });
 }
