@@ -18,12 +18,12 @@ export function middleware(request: NextRequest) {
    // Apply the i18n middleware first
    const i18nResponse = I18nMiddleware(request);
   //  i18nResponse.headers.set('request-ip', request.ip || 'unknown')
-  const origin = request.headers.get("origin")
-  if (allowedOrigins.includes(origin as string)) {
-    i18nResponse.headers.append("Access-Control-Allow-Origin", origin as string)
-  }
-  i18nResponse.headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  i18nResponse.headers.append("Access-Control-Allow-Headers", "Content-Type");
+  // const origin = request.headers.get("origin")
+  // if (allowedOrigins.includes(origin as string)) {
+  //   i18nResponse.headers.append("Access-Control-Allow-Origin", origin as string)
+  // }
+  // i18nResponse.headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  // i18nResponse.headers.append("Access-Control-Allow-Headers", "Content-Type");
    return i18nResponse                                                                                                                                     
 
 }
