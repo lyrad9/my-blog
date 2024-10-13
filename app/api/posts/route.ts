@@ -3,7 +3,11 @@ import { sortPosts } from "@/src/components/utils/functions";
 import { NextResponse, NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   // Liste blanche des origines autorisées
-  const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
+  const allowedOrigins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://darylblog.vercel.app",
+  ];
   // Récupérer l'origine de la requête
   const origin = req.headers.get("origin");
 
