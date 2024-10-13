@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
     "http://localhost:3000",
     "http://localhost:3001",
     "https://darylblog.vercel.app",
+   " https://radylb.vercel.app"
   ];
   // Récupérer l'origine de la requête
   const origin = req.headers.get("origin");
