@@ -39,9 +39,9 @@ export async function GET(req: NextRequest) {
   // Ajouter les en-têtes CORS
   if (isAllowedOrigin) {
     
-    response.headers.set("Access-Control-Allow-Origin", origin as string);
-    response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+    response.headers.append("Access-Control-Allow-Origin", origin as string);
+    response.headers.append("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.headers.append("Access-Control-Allow-Headers", "Content-Type");
   }
   return response;
   // return NextResponse.json({ posts: recentPosts });
