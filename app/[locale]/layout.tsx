@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../globals.css";
+import "./globals.css";
 import "../../styles/mdx.css";
 import { Anek_Telugu } from "next/font/google";
 import { cn } from "@/src/lib/utils";

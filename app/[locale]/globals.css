@@ -50,7 +50,7 @@ body {
       --ring: 28.87 83.46% 50.2%;
       --radius: 0.5rem;
     }
-  
+
     .dark {
       --background: 20 14.3% 4.1%;
       --foreground: 60 9.1% 97.8%;
@@ -74,9 +74,7 @@ body {
       --radius: 0.5rem;
     }
   }
-  
 }
-
 
 @layer base {
   * {
@@ -184,3 +182,76 @@ body {
 .article :where(pre code):not(:where([class~=not-article],[class~=not-article] *))::after {
   content: none;
 } */
+
+/* #prose > * {
+  margin-top: 0;
+  margin-bottom: 0;
+  color:hsl(var(--foreground));
+} */
+/* .prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+  font-weight: 500;
+} */
+/* .prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+} */
+/* .prose-invert {
+  --tw-prose-pre-bg: inherit;
+  --tw-prose-pre-code: inherit;
+  --tw-prose-code: inherit;
+} */
+
+/* .light body .prose-invert{
+  color: hsl(var(--muted-background));
+} */
+.prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,code,strong,span):not(:where([class~="custom"], [class~="custom"] *))  {
+  color:hsl(var(--foreground));
+ 
+}
+.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+ @apply font-semibold mt-12 mb-5 text-3xl max-md:text-2xl;
+  /* font-weight: 600;
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111; */
+}
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply font-semibold mt-12 mb-5 text-2xl leading-7 max-md:text-xl;
+ 
+  line-height: 1.1111111;
+}
+/* .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+ 
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.8888889em;
+  line-height: 1.1111111;
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  color: hsl(var(--foreground));
+
+} */
+
+/* .prose :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+ 
+  font-weight: 500;
+} */
+/* .prose :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  
+  border-radius: 0;
+  padding-top:0;
+background-color: inherit;
+  padding-bottom: 0;
+  padding-right: 0px;
+ 
+} */
+
+.prose :where(figure):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

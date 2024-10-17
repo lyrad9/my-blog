@@ -3,6 +3,7 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import { rehypePlugin } from "./src/components/utils/mdx-plugin";
 import { getUrl } from "./app/[locale]/posts/[...slug]/getUrl";
+import rehypeShiki from "@shikijs/rehype";
 
 const getVersions = (lang: string, slug: string, translation?: string) => {
   const refineSlug = slug
@@ -84,10 +85,15 @@ export default defineConfig({
     clean: true,
   },
   collections: { posts },
+  markdown: {
+    rehypePlugins: [[rehypeShiki as any, { theme: 'nord' }]]
+  },
   mdx: {
+  
     // rehypePlugin,
     // rehypePlugins:rehypePlugin,
     rehypePlugins: [rehypeSlug, [rehypePrettyCode,
+      
   //      { themes:{
   //     light:'github-light',
   //     dark:"github-dark",

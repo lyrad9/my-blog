@@ -136,7 +136,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
           <h1 className=" text-5xl max-sm:text-3xl font-bold">{post.title}</h1>
 
-          <p className="text-sm text-muted-foreground">
+          <p  className="text-sm text-muted-foreground">
             {t("whoAndWhenWrittenPost", {
               author: (
                 <span className="  underline font-bold">Ngako Daryl</span>
@@ -154,7 +154,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
 
         <Separator className="my-4" />
-        <div className="text-muted-foreground">
+        <div id="prose" className="prose prose-invert text-muted-foreground">
           <MDXContent code={post.body} />
         </div>
       </article>
