@@ -4,7 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import images from "@/src/components/utils/constants";
 export const MdxImage = ({path,title,alt,isBanner}:{
   path:string,
-  title:string,
+  title?:string,
   alt:string,
   isBanner?:boolean
 }) => {

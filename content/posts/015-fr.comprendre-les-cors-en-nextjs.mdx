@@ -12,7 +12,7 @@ published: true
 bannerImage: https://lzdzy7eapvafpa4c.public.blob.vercel-storage.com/img_cors.jpg
 ---
 
-<MdxImage path="/corsBanner" title="dddddd" />
+<MdxImage path="/corsBanner" />
 On est déjà tous tombé ou presque sur ce genre d'erreur:
 
 Mais qu'est ce que cela veut dire? Celà signifie tout simplement que tu ne
@@ -220,8 +220,10 @@ const nextConfig = {
 };
 module.exports = nextConfig;
 ```
-
+<Callout type="warning">
 N'oublies pas de redémarrer ton serveur NextJS après avoir appliquer les changements.
+</Callout>
+
 
 ### utilisation du fichier <Code>middleware.ts</Code>
 
