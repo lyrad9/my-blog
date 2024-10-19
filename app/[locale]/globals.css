@@ -93,10 +93,10 @@ body {
   }
 }
 
-/* .prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,code,span,strong):not(:where([class~="custom"], [class~="custom"] *))  {
+.prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,code,span,strong):not(:where([class~="custom"], [class~="custom"] *))  {
   color:hsl(var(--foreground));
  
-} */
+}
 .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
  @apply font-bold mt-12 mb-5 text-3xl max-md:text-2xl;
 
