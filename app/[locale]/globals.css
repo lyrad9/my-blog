@@ -93,7 +93,7 @@ body {
   }
 }
 
-.prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,code,strong,span):not(:where([class~="custom"], [class~="custom"] *))  {
+.prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,strong,span):not(:where([class~="custom"], [class~="custom"] *))  {
   color:hsl(var(--foreground));
  
 }
