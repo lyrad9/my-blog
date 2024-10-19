@@ -5,6 +5,9 @@ import cv from "../../../public/banner/cv.jpg"
 import skills from "../../../public/cv/skills.png"
 import edu from "../../../public/cv/education.png"
 import exp from "../../../public/cv/experiences.png"
+import err_cors from "../../../public/err_cors.png"
+import ex_cors from "../../../public/ex_cors.jpg"
+
 export const tabCategories =["design","astuce","story","advice","nextjs","css","javaScript"]
  const images = [
     {
@@ -39,6 +42,18 @@ export const tabCategories =["design","astuce","story","advice","nextjs","css","
         path:"/cv",
         src:cv,
         isBanner:true
+        
+    },
+    {
+        path:"/err_cors",
+        src:err_cors,
+      
+        
+    },
+    {
+        path:"/ex_cors",
+        src:ex_cors,
+    
         
     },
  ]

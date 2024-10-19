@@ -15,6 +15,9 @@ bannerImage: https://lzdzy7eapvafpa4c.public.blob.vercel-storage.com/img_cors.jp
 <MdxImage path="/corsBanner" />
 On est déjà tous tombé ou presque sur ce genre d'erreur:
 
+
+<MdxImage path="/err_cors" title="Erreur CORS" alt="img-erreur CORS" />
+
 Mais qu'est ce que cela veut dire? Celà signifie tout simplement que tu ne
 peux pas avoir accès à la ressource demandée car tu n'a tout simplement pas
 l'autorisation(origine manquant). Comment résoudre cela? Tout d'abord faut
@@ -183,6 +186,7 @@ export const CardLatestPosts = () => {
 ```
 
 Et maintenant regardons le résultat dans la console du navigateur:
+<MdxImage path="/ex_cors" title="Exemple requête CORS" alt="img-exemple CORS" />
 la variable <Code>datas</Code> est <Code>undefined</Code> et nous avons un message d'erreur. Mais pourquoi? Tout simplement parce que depuis l'autre application(le porfolio en question) tu n'as pas accès à ces ressources(posts).
 
 Mais comment la ressource est protégée? On a juste créer une API puis l'utiliser. Enfaite par défaut tu ne peux pas accéder à une ressource distante (située sur un autre domaine). tu devra donc configurer les CORS dans ton application afin de la rendre accessible.
@@ -199,7 +203,7 @@ Il existe plusieurs façons de configurer les CORS en nextjs. Nous en parlerons 
 
 Tu peux directement ajouter la configuration des CORS dans ce fichier. Pour définir des en-têtes HTTP personnalisées, utilise la clé <Code>headers</Code> dans <Code>next.config.js</Code>:
 
-```typeScript showLineNumbers  title="next.config.js"
+```ts showLineNumbers  title="next.config.js"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {

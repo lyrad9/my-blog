@@ -5,7 +5,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "https://darylblog.vercel.app",
-//  "https://lyrad.vercel.app"
+ "https://lyrad.vercel.app"
 ];
 export async function GET(req: NextRequest) {
   // Liste blanche des origines autorisées
