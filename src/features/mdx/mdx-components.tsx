@@ -1,41 +1,31 @@
 import * as runtime from "react/jsx-runtime";
-import Image from "next/image";
+
 import { Callout } from "./callout";
-import { Code } from "./Code";
+import { Code } from "../../components/shared/Code";
 import { cn } from "@/src/lib/utils";
 import { Suspense } from "react";
 import { MdxLink } from "@/src/features/html-components/Link";
-import { MdxYouTube } from "@/src/features/MdxYouTube";
-import { MdxPre } from "@/src/features/MdxPre";
+import { MdxYouTube } from "@/src/features/mdx/MdxYouTube";
+import { MdxPre } from "@/src/features/mdx/MdxPre";
 import { MdxP } from "@/src/features/html-components/MdxP";
 import { MdxDiv } from "@/src/features/html-components/MdxDiv";
-import { Spacing } from "./Spacing";
+import { Spacing } from "../../components/shared/Spacing";
+import { MdxImage } from "./MdxImage";
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   return fn({ ...runtime }).default;
 };
 const components = {
-  Image,
   Callout,
   Code,
   MdxLink,
   YouTube: MdxYouTube,
   pre: MdxPre,
-  p:MdxP,
-  MdxDiv,
-  Spacing
+  Spacing,
+  MdxImage
   // p:MdxP
 
-  // h1:({className,...props}) => (
-  //   <h1 className={cn(
-  //     "mt-2 text-4xl font-bold tracking-tight",
-  //     className
-  //   )}
-  //   {...props}
-  //   >
 
-  //   </h1>
-  // )
 };
 interface MdxProps {
   code: string;

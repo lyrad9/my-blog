@@ -11,12 +11,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/src/components/ui/sheet";
-import { Button } from "../src/components/ui/button";
+import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
-import { Icons } from "./icons";
+import { Icons } from "../svg/icons";
 import { cn } from "@/src/lib/utils";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
@@ -76,7 +76,6 @@ export function MobileNav() {
                 target="_blank"
                 rel="noreferrer"
               >
-                
                 <span className="s">Github</span>
               </Link>
               <Link
@@ -85,7 +84,7 @@ export function MobileNav() {
                 target="_blank"
                 rel="noreferrer"
               >
-               Gmail
+                Gmail
               </Link>
               <ThemeToggle />
             </div>

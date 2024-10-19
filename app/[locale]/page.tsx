@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { Section } from "@/components/Section";
-import { Code } from "@/components/Code";
-import { Spacing } from "@/components/Spacing";
-import { LatestPosts } from "@/components/LatestPosts";
+import { Section } from "@/src/components/shared/Section";
+import { Code } from "@/src/components/shared/Code";
+import { Spacing } from "@/src/components/shared/Spacing";
+import { LatestPosts } from "./fonts/_components/posts.latest";
 import { Spotlight } from "@/src/components/ui/spotlight";
 import { getI18n } from "@/locales/server";
 import Link from "next/link";
-import { CategoriesPosts } from "@/src/features/CategoriesPosts";
+import { CategoriesPosts } from "@/app/[locale]/fonts/_components/posts.categories";
 export default async function Home() {
   const t = await getI18n();
   return (

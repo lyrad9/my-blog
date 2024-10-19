@@ -1,6 +1,6 @@
 ---
-title: Comprendre les CORS en NextJS
-description: C'est quoi les CORS (Cross-Origin Ressource Sharing)? Comment les configurer dans une application NextJS afin de limiter l'accès à des ressources? Cet article pourra t'aider à répondre à tes questions.
+title: Résoudre les problèmes de CORS en NextJS
+description: C'est quoi les CORS (Cross-Origin Ressource Sharing)? Comment les configurer dans une application NextJS? Cet article répondra à tes questions.
 date: 2024-10-16
 lang: fr
 meta:
@@ -9,72 +9,107 @@ meta:
 categories:
   - nextjs
 published: true
+bannerImage: https://lzdzy7eapvafpa4c.public.blob.vercel-storage.com/img_cors-ZFi8CEEYFDtxBWQfZayBGLCGwOT0fi.jpg
 ---
 
-<MdxDiv>On est déjà tous tomber ou presque sur ce genre d'erreur:</MdxDiv>
+<MdxImage path="/corsBanner" title="dddddd" />
+On est déjà tous tombé ou presque sur ce genre d'erreur:
 
-<MdxDiv>
-  Mais qu'est ce que cela veut dire? Celà signifie tout simplement que vous nous
-  pouvez pas avoir accès à la ressource demandé car vous n'avez pas
-  l'autorisation(origine manquant). Mais pour toi qu'est ce que celà veut dire?
-  comment résoudre cela? Tout d'abord faut savoir qu'est ce que signifie les
-  CORS?
-</MdxDiv>
-# C'est quoi les CORS?
-<MdxDiv>
-  Un CORS(Cross-Origin Ressource Sharing) est un mécanisme de sécurité utiisé
-  par les navigateurs web pour prévenir les attaques de type Cross-Site Request
-  Forgery (CSRF) et Cross-Site Scripting (XSS).
-</MdxDiv>
+Mais qu'est ce que cela veut dire? Celà signifie tout simplement que tu ne
+peux pas avoir accès à la ressource demandée car tu n'a tout simplement pas
+l'autorisation(origine manquant). Comment résoudre cela? Tout d'abord faut
+connaitre ce que signifie CORS.
 
-# Comprendre le problème
+## C'est quoi les CORS?
 
-<MdxDiv>
-  Par défaut, les navigateurs web ne permettent pas à une page web d'accéder à
-  des ressources(comme des API, images,etc...) situées sur un autre domaine ou
-  sous-domaine que celui de la page courante. C'est ça qu'on appelle de même
-  origine(same-origin).
-</MdxDiv>
+Un <Code>CORS</Code> (Cross-Origin Ressource Sharing) est un mécanisme de sécurité utilisé
+par les navigateurs web pour prévenir les attaques de type Cross-Site Request
 
-# Comment CORS résout-il le problème?
+<Code>Forgery (CSRF)</Code> et Cross-Site Scripting <Code>(XSS)</Code>.
 
-<MdxDiv>
-  CORS va donc permettre aux serveurs de spécifier lesquelles des origines
-  (domaines,protocoles,ports) sont autorisées à accéder à leurs ressources. En
-  d'autres termes CORS est comme un système de protection empêchant l'accès non
-  autorisé aux ressources d'un domaine.
-</MdxDiv>
+## Comprendre le problème
 
-# Comment fonctionnent-ils?
+Par défaut, les navigateurs web ne permettent pas à une page web d'accéder à
+des ressources (API, images,etc...) situées sur un autre domaine ou
+sous-domaine que celui de la page courante. C'est ça qu'on appele la politique de même
+origine(<Code>same-origin</Code>).
 
-<MdxDiv>
-  Lorsqu'un navigateur envoit une requête à un serveur, il inclut l'en-tête{" "}
-  <Code>Origin</Code> avec l'origine de la requête. Le serveur répond par la
-  suite avec les en-têtes CORS suivants:
-</MdxDiv>
+<Callout type="info">
+  <div className="not-last-margin-bottom [&>* :first-child]:!mt-0">
+    la politique de sécurité <Code>same-origin</Code> empêche les pages web de
+    différentes origines d'accéder aux ressources les unes des autres.
+  </div>
+</Callout>
+
+## Comment CORS résout-il le problème?
+
+le <Code>CORS</Code> va donc permettre aux serveurs de spécifier laquelles des
+origines sont autorisées à accéder à leurs ressources. En d'autres termes CORS
+est comme un système de protection empêchant l'accès non autorisée aux
+ressources d'un domaine.
+
+## Comment fonctionnent-ils?
+
+Lorsqu'un navigateur envoit une requête à un serveur, il inclut l'en-tête
+
+<Code>Origin</Code> avec l'origine de la requête. Le serveur répond par la suite
+avec les en-têtes CORS suivants:
 
 - <Code>Access-Control-Allow-Origin:</Code> spécifie les origines
   autorisées("monporfolio.com", "monblog.com", etc...)
 - <Code>Access-Control-Alllow-Methods:</Code> indique les méthodes HTTP
-  autorisées (GET,POST,PUT,DELETE,etc..)
+  autorisées (GET, POST, PUT, DELETE,etc..)
 - <Code>Access-Control-Allow-Credentials:</Code> indique si le navigateur doit
-  inclure des identifiants (cookies ou une authentification HTTP) dans la
-  demande d'origine croisée.
+  inclure des identifiants (<Code>cookies</Code> ou une <Code>authentification HTTP </Code>
+  ) dans la demande d'origine croisée.
 - <Code>etc...</Code>
+
+Observe cette image... Tu vois:
+
+- l'<Code>Origine</Code>: (yourdomain.com) où est effectuée la requête.
+- <Code>Google chrome</Code>: qui envoit la requête.
+- un <Code>serveur CORS</Code>: (example.com) qui reçoit la requête et renvoit la réponse.
+
+<MdxImage
+  alt="img-fonctionnement des CORS"
+  path="/cors"
+  title="fonctionnement des CORS"
+/>
+
+<Callout type="info">
+  <div className="not-last-margin-bottom [&>* :first-child]:!mt-0">
+    Un <Code>Cross-Origin-Server</Code> ou serveur CORS est un serveur qui
+    autorise les requêtes HTTP provenant de domaines différents(origines).
+  </div>
+</Callout>
+Avant de pouvoir répondre à la requête demandée par le client, le serveur va
+devoir répondre à des requêtes préliminaires appelées <Code>
+  préflight options
+</Code> pour vérifier les permissions.
+
+Les <Code>préflight options</Code> (ou requêtes préliminaires) sont des requêtes HTTP envoyées par le navigateur avant d'envoyer la requête principale afin de vérifier les permissions et les options de sécurité pour une requête CORS.
+
+**Comment tout celà fonctionne t-il...**
+
+Google chrome vérifie d'abord si la requête émise par le client (yourdomaine.com) est autorisée en envoyant une requête préliminaire (preflight) au serveur (en **1**).
+
+Le serveur (example.com) répond alors à cette requête préliminaire en envoyant des en-têtes HTTP qui indiquent les <Code>permissions</Code> et les <Code>options de sécurité</Code> pour la requête principal (en **2**).
+
+Si la réponse préliminaire est positive, chrome envoit alors la requête principale sinon, il affiche une erreur CORS (en **3**).
+
+Le serveur répond (en **4**).
 
 Prenons un exemple...
 
-<MdxDiv>
-  Imaginons tu as deux applications, l'un étant ton blog qui contient des posts
-  et l'autre ton porfolio. Dns une partie de ton blog tu souhaites afficher des
-  posts de ton blog du moins les plus récents. Tu vas devoir donc créer une API
-  dans ton blog et l'utiliser dans ton porfolio afin de récuperer cela. Tu
-  procèdes comme suit:
-</MdxDiv>
+Imaginons deux applications, l'un étant ton blog qui contient des posts et
+l'autre ton porfolio. Dans une section de ton porfolio tu souhaites afficher
+les posts(les plus récents) de ton blog. Tu vas devoir donc créer une API dans
+ton blog et l'utiliser dans ton porfolio afin de récuperer cela. Tu procèdes
+comme suit:
 
 1. **création de l'API**
 
-```ts showLineNumbers title="route.ts" caption="Im a caption"
+```typeScript showLineNumbers title="api/posts/route.ts"
 import { getPosts } from "...";
 import { sortPosts } from "...";
 import { NextResponse, NextRequest } from "next/server";
@@ -89,7 +124,7 @@ export async function GET(req: NextRequest) {
 
 2. **utilisation de l'API**
 
-```ts showLineNumbers caption="Im a caption"
+```typeScript showLineNumbers
 import { PostsResponseSchema } from "@/features/posts/posts.schema";
 export async function getLatestPosts() {
   const options = {
@@ -98,7 +133,7 @@ export async function getLatestPosts() {
       accept: "application/json",
     },
   };
-  const response = await fetch("https://monblog.com/api/", options)
+  const response = await fetch("https://monblog.com/api/posts", options)
     .then((response) => response.json())
     .then(PostsResponseSchema.parse);
   console.log(response);
@@ -106,7 +141,7 @@ export async function getLatestPosts() {
 }
 ```
 
-```ts showLineNumbers {18} caption="Im a caption"
+```typeScript showLineNumbers {18}
 "use client";
 import React from "react";
 import {
@@ -147,16 +182,11 @@ export const CardLatestPosts = () => {
 ```
 
 Et maintenant regardons le résultat dans la console du navigateur:
-la variable <Code>datas</Code> est undefined et nous avons un message d'erreur. Mais pourquoi? Tout simplement parce que depuis ton autre application tu n'as pas accès à ces ressources(posts).
+la variable <Code>datas</Code> est <Code>undefined</Code> et nous avons un message d'erreur. Mais pourquoi? Tout simplement parce que depuis l'autre application(le porfolio en question) tu n'as pas accès à ces ressources(posts).
 
-<Callout type="info">
-  Le rôle des CORS est d'empêcher à des utilisateurs d'accéder à des ressources
-  non autorisées.
-</Callout>
+Mais comment la ressource est protégée? On a juste créer une API puis l'utiliser. Enfaite par défaut tu ne peux pas accéder à une ressource distante (située sur un autre domaine). tu devra donc configurer les CORS dans ton application afin de la rendre accessible.
 
-Mais tu te dis certainement comment est ce que la ressource est protégée sachant queje n'ai rien sécurisé? Enfaite par défaut tu ne peux pas accéder à une ressource distante(située sur un autre domaine). tu devra donc configurer les CORS dans ton application afin de la rendre accessible.
-
-# Comment configurer les CORS dans une application NextJS?
+## Comment configurer les CORS dans une application NextJS?
 
 Il existe plusieurs façons de configurer les CORS en nextjs. Nous en parlerons de trois uniquement:
 
@@ -164,11 +194,11 @@ Il existe plusieurs façons de configurer les CORS en nextjs. Nous en parlerons 
 - Dans le fichier <Code>middleware.ts</Code>
 - Dans une <Code>API route</Code>
 
-## utilisation du fichier <Code>next.config.js</Code>
+### utilisation dans le fichier <Code>next.config.js</Code>
 
-Vous pouvez directement ajouter la configuration des CORS dans ce fichier. Pour définir des en-têtes HTTP personnalisées, utilisez la clé <Code>headers</Code> dans <Code>next.config.js</Code> :
+Tu peux directement ajouter la configuration des CORS dans ce fichier. Pour définir des en-têtes HTTP personnalisées, utilise la clé <Code>headers</Code> dans <Code>next.config.js</Code>:
 
-```ts showLineNumbers
+```typeScript showLineNumbers  title="next.config.js"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {
@@ -191,14 +221,13 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-Cela peut être très utile quand tu veux définir les CORS pour. plusieurs routes
-N'oubliez pas de redémarrez votre serveur NextJS après avoir appliquer desz changements.
+N'oublies pas de redémarrer ton serveur NextJS après avoir appliquer les changements.
 
-## utilisation du fichier <Code>middleware.ts</Code>
+### utilisation du fichier <Code>middleware.ts</Code>
 
-Le <Code>middleware</Code>en nextjs est une fonction qui s'éxécute avant qu'une requête ne soit terminée. Tu peux définir des en-têtes CORS dans le middleware pour autoriser les requêtes d'origine croisée.
+Le <Code>middleware</Code> en nextjs est une fonction qui s'éxécute avant qu'une requête ne soit terminée. Tu peux définir des en-têtes CORS dans le middleware pour autoriser les requêtes d'origine croisée.
 
-```ts showLineNumbers
+```typeScript showLineNumbers title="middleware.ts"
 import { NextRequest, NextResponse } from "next/server";
 
 const corsOptions = {
@@ -219,12 +248,11 @@ export const config = {
 };
 ```
 
-## Utilisation dans une <Code>API route</Code>
+### Utilisation dans une <Code>API route</Code>
 
 Tu peux configurer les en-têtes CORS headers pour chaque route individuellment.
-Vous pouvez définir des en-têtes CORS pour un gestionnaire de route spécifique à l'aide des méthodes standard de l'API Web :
 
-```ts showLineNumbers
+```typeScript showLineNumbers
 export async function GET(request: Request) {
   return new Response("Hello, C'est Daryl!", {
     status: 200,
@@ -238,22 +266,19 @@ export async function GET(request: Request) {
 }
 ```
 
-# Autoriser pusieurs origines CORS
+## Autoriser plusieurs origines CORS
 
-L'en-tête <Code>Access-Control-Allow-Origin</Code> est une option binaire qui accepte soit une seule origine, soit toutes
-origines. Vous utiliseriez un astérisque <Code>\*</Code> pour définir cet en-tête afin qu'il accepte tous les domaines, mais ce caractère générique ne peut pas être
-utilisé lorsque les informations d’identification sont incluses dans la demande.
-Si vous souhaitez autoriser plusieurs origines CORS, mais pas toutes, vous devez écrire une logique personnalisée. Gardez à l'esprit que
-vous ne pouvez mettre en œuvre cette approche qu'avec la solution middleware. Les deux autres options pour activer
-CORS dans Next.js implique des fichiers statiques qui n'acceptent pas de comportement personnalisé.
+L'en-tête <Code>Access-Control-Allow-Origin</Code> est une option binaire qui accepte soit une seule origine, soit plusieurs
+origines. Tu peux utiliser un astérisque <Code>\*</Code> pour définir cet en-tête afin qu'il accepte tous les domaines.
+Si tu souhaites autoriser plusieurs origines CORS, mais pas toutes, tu dois écrire une logique personnalisée.
 
-## modification du fichier <Code>middelware.ts</Code>
+### modification du fichier <Code>middelware.ts</Code>
 
-```ts showLineNumbers
+```typeScript showLineNumbers title="middleware.ts"
 import { NextRequest, NextResponse } from "next/server";
 // the list of all allowed origins
 const allowedOrigins = [
-  "http://localhost:3000", 
+  "http://localhost:3000",
   "https://monblog.com",
   "https://monsite.com",
 ];
@@ -274,9 +299,8 @@ export function middleware(request: NextRequest) {
   if (allowedOrigins.includes(origin)) {
     res.headers.append("Access-Control-Allow-Origin", origin);
   }
-  const response = NextResponse.next();
   Object.entries(corsOptions).forEach(([key, value]) => {
-    response.headers.append(key, value);
+    res.headers.append(key, value);
   });
   return response;
 }
@@ -285,3 +309,37 @@ export const config = {
   matcher: "/api/:path*",
 };
 ```
+
+## Utilisation de <Code>Nextjs-CORS</Code> package
+
+<Code>nextjs-CORS</Code> est un package qui facilite la configuration et la
+gestion des CORS dans une application nextjs. Tu peux installer le package
+nextjs-cors en exécutant la commande suivante dans ton application:{" "}
+
+```bash
+ npm install nextjs-cors
+```
+
+Ensuite utilise le comme ceci dans ton API:
+
+```typeScript
+import { NextResponse } from "next/server";
+import Cors from "nextjs-cors";
+
+export async function POST(request: Request) {
+  // Appliquer les en-têtes CORS sur cette route
+  await Cors(request, NextResponse, {
+    methods: ["GET", "POST"],
+    origin: ["https://monsite.com"], // Limiter l'origine
+    optionsSuccessStatus: 200,
+  });
+
+  return NextResponse.json({ message: "CORS configuré" });
+}
+```
+
+## Conclusion
+
+En résumé, <Code>CORS</Code> est un mécanisme de sécurité qui pemret aux serveurs de contrôler l'accès à des ressources depuis des origines différentes. En nextjs il existe plusieurs façons de les configurer que ce soit dans une <Code>API route</Code>, dans le fichier <Code>config.js</Code> ou <Code>middleware.ts</Code>. Tu peux aussi utiliser le package <Code>next-js CORS</Code> pour configurer plus facilement les CORS.
+
+Donc je compte sur toi pour maintenant sécuriser tes applications😉.

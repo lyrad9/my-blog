@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { buttonVariants } from "../src/components/ui/button";
+import { buttonVariants } from "../ui/button";
 import { cn } from "@/src/lib/utils";
-import { Icons } from "./icons";
+import { Icons } from "../svg/icons";
 import MainNav from "./main.nav";
 import { MobileNav } from "./mobile-nav";
 import { ThemeToggle } from "@/Theme/Theme-toggle";
 import { MoonIcon, SunIcon } from "lucide-react";
-import { LocaleSelect } from "@/app/[locale]/LocaleSelect";
+import { LocaleSelect } from "@/src/components/shared/LocaleSelect";
 import { Section } from "./Section";
 export const SiteHeader = () => {
   return (

@@ -9,7 +9,7 @@ export const ThemeToggle = () => {
     <Button
       className="px-2 py-2 w-10 h-10"
       variant={"ghost"}
-      //    size={"sm"}
+         size={"sm"}
       onClick={() => {
         setTheme(theme === "light" ? "dark" : "light");
       }}

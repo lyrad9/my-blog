@@ -1,9 +1,13 @@
 [data-rehype-pretty-code-figure] pre {
-  @apply px-0  bg-popover border border-border dark:bg-slate-700;
+  @apply px-0  bg-popover rounded-none border border-border dark:bg-slate-700;
+}
+
+[data-rehype-pretty-code-figure] .data-language {
+  @apply  text-base font-normal;
 }
 
 [data-rehype-pretty-code-figure] code:not(.data-language) {
-  @apply text-sm !leading-loose md:text-base border-0 p-0 bg-popover dark:bg-slate-700;
+  @apply text-sm rounded-none !leading-loose md:text-base border-0 p-0 bg-popover dark:bg-slate-700;
 }
 
 [data-rehype-pretty-code-figure] code[data-line-numbers] {

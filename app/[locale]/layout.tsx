@@ -5,13 +5,11 @@ import "../../styles/mdx.css";
 import { Anek_Telugu } from "next/font/google";
 import { cn } from "@/src/lib/utils";
 import { ThemeProvider } from "@/Theme/ThemeProvider";
-import { SiteHeader } from "@/components/SiteHeader";
-import { Providers } from "./providers";
-import { Spacing } from "@/components/Spacing";
-import { Footer } from "@/components/Footer";
-import { setStaticParamsLocale } from "next-international/server";
-import { getStaticParams } from "@/locales/server";
+import { SiteHeader } from "@/src/components/shared/SiteHeader";
+import { Providers } from "../../src/providers/providers";
+import { Footer } from "@/src/components/shared/Footer";
 import ReactQueryProvider from "@/src/providers/ReactQueryProvider";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -53,20 +51,20 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          // enableSystem
           disableTransitionOnChange
         >
-          <Providers locale={params.locale}>
-            <ReactQueryProvider>
-              <div className="flex min-h-screen bg-background flex-col">
-                <SiteHeader />
+        <Providers locale={params.locale}>
+          <ReactQueryProvider>
+            <div className="flex min-h-screen bg-background flex-col">
+              <SiteHeader />
 
-                <main className="flex flex-1">{children}</main>
+              <main className="flex flex-1">{children}</main>
 
-                <Footer />
-              </div>
-            </ReactQueryProvider>
-          </Providers>
+              <Footer />
+            </div>
+          </ReactQueryProvider>
+        </Providers>
         </ThemeProvider>
       </body>
     </html>

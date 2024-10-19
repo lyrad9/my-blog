@@ -1,25 +1,22 @@
-"use client"
+"use client";
 import React from "react";
-import { Section } from "@/components/Section";
+import { Section } from "@/src/components/shared/Section";
 import Image from "next/image";
-import profil from "../../../public/IMG-20230131-WA0018.jpg"
-import { Spacing } from "@/components/Spacing";
+import me from "../../../public/me.jpg";
+import { Spacing } from "@/src/components/shared/Spacing";
 import { getI18n } from "@/locales/server";
-import { Code } from "@/components/Code";
+import { Code } from "@/src/components/shared/Code";
 import Link from "next/link";
-import { Icons } from "@/components/icons";
-import notFound from "../../../public/404.gif"
-export const dynamic = "force-static";
+import { Icons } from "@/src/components/svg/icons";
+import notFound from "../../../public/404.gif";
+// export const dynamic = "force-static";
 
 import { useI18n, useScopedI18n } from "@/locales/client";
-const AboutPage =  () => {
-  
-
-  const t =  useI18n();
+const AboutPage = () => {
+  const t = useI18n();
   return (
-    
     <Section className="">
-     <Spacing size="md" />
+      <Spacing size="md" />
       <div>
         <h1 className=" font-bold max-sm:text-3xl text-4xl">About</h1>
       </div>
@@ -61,10 +58,10 @@ const AboutPage =  () => {
         </div>
         <div className="flex-2  max-md:m-auto ml-auto  max-md:w-56">
           <Image
-            className="w-52 rounded-full h-52 object-cover"
+            className="w-52 rounded-full h-52 object-cover object-top"
             alt="profil"
-            src={profil}
-            // src={"/public/static/IMG-20230131-WA0018.jpg"}
+            src={me}
+          
           />
         </div>
       </div>

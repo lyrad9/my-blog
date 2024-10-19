@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Section } from "@/components/Section";
+import { Section } from "@/src/components/shared/Section";
 import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 import { getI18n } from "@/locales/server";

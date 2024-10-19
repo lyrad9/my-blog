@@ -1,9 +1,7 @@
 "use client";
 import { Heart } from "lucide-react";
-import { incrementViews } from "./views.action";
-import useSWR from "swr";
-import { getLikesCount } from "./getLikesCount.action";
-import { incrementLikes } from "./Likes.action";
+import { getLikesCount } from "../_actions/getLikesCount.action";
+import { incrementLikes } from "../_actions/Likes.action";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/src/components/ui/button";
 export const IncrementLikesCountBtn = ({ slug }: { slug: string }) => {
@@ -23,7 +21,7 @@ export const IncrementLikesCountBtn = ({ slug }: { slug: string }) => {
 
   return (
     <Button
-    variant={"outline"}
+      variant={"outline"}
       onClick={() => mutation.mutate()}
       className="px-8 flex gap-2 items-center text-muted-foreground"
     >

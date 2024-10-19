@@ -1,14 +1,13 @@
 import React from "react";
 import { Section } from "./Section";
-import { buttonVariants } from "../src/components/ui/button";
+import { buttonVariants } from "../ui/button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/src/lib/utils";
 import Link from "next/link";
-import { Icons } from "./icons";
+import { Icons } from "../svg/icons";
 import { posts } from "#site/content";
 import { getCurrentLocale } from "@/locales/server";
 export const Footer = () => {
- 
   const favouritePosts = posts.filter(
     (post) => post.favourite == true && post.lang === "fr"
   );
@@ -22,16 +21,20 @@ export const Footer = () => {
 
               <div className="text-muted-foreground font-semibold flex flex-col gap-1">
                 {" "}
-                <Link  href="/posts">Posts</Link>
+                <Link href="/posts">Posts</Link>
                 <Link href="/about">About</Link>
               </div>
             </div>
             <div className="flex flex-col gap-2 flex-[3]">
               <p className="font-bold">Best posts</p>
               {favouritePosts.map((favourite) => (
-                <Link 
-                key={favourite.slug}
-                className="dark:text-primary-foreground text-primary hover:underline" href={`/posts/${favourite.slug}`}>{favourite.title}</Link>
+                <Link
+                  key={favourite.slug}
+                  className="dark:text-primary-foreground text-primary hover:underline"
+                  href={`/posts/${favourite.slug}`}
+                >
+                  {favourite.title}
+                </Link>
               ))}
             </div>
             <div className="flex gap-2 flex-col flex-1 ">

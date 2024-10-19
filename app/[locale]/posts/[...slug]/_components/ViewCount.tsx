@@ -1,5 +1,5 @@
 "use client";
-import { incrementViews } from "./views.action";
+import { incrementViews } from "../_actions/views.action";
 import useSWR from "swr";
 
 // Fonction de fetch pour appeler l'API et obtenir les vues

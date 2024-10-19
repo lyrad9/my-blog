@@ -1,34 +1,30 @@
 import { posts } from "#site/content";
-import { MDXContent } from "@/components/mdx-components";
+import { MDXContent } from "@/src/features/mdx/mdx-components";
 import { Separator } from "@/src/components/ui/separator";
 import { getCurrentLocale } from "@/locales/server";
 import { notFound } from "next/navigation";
-import { ChangeLocalPost } from "@/components/ChangeLocalPost";
-import { Section } from "@/components/Section";
+import { ChangeLocalPost } from "@/app/[locale]/posts/[...slug]/_components/ChangeLocalPost";
+import { Section } from "@/src/components/shared/Section";
 import {
   formatDateToLocal,
   formateDate,
 } from "@/src/components/utils/functions";
 import { getI18n } from "@/locales/server";
 import Link from "next/link";
-import { Code } from "@/components/Code";
+import { Code } from "@/src/components/shared/Code";
 import { setStaticParamsLocale } from "next-international/server";
-import { getStaticParams } from "@/locales/server";
-import { Spacing } from "@/components/Spacing";
+import { Spacing } from "@/src/components/shared/Spacing";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { ViewCount } from "./ViewCount";
-import { ChevronLeft } from "lucide-react";
-import { redis } from "@/src/lib/redis";
-import { ReportView } from "./view";
+import { ViewCount } from "./_components/ViewCount";
+
 import { ArrowLeft } from "lucide-react";
 import { Heart } from "lucide-react";
-import { buttonVariants } from "@/src/components/ui/button";
-import { cn } from "@/src/lib/utils";
-import { LikesCount } from "./LikesCount";
-import { IncrementLikesCountBtn } from "./IncrementLikesCountBtn";
+import { LikesCount } from "./_components/LikesCount";
+import { IncrementLikesCountBtn } from "./_components/IncrementLikesCountBtn";
+import { MdxImage } from "@/src/features/mdx/MdxImage";
 // export const dynamic = "force-static";
-export const revalidate = 0;
+// export const revalidate = 0;
 async function getPostFromParams(slugParams: string[]) {
   console.log("getPostParams", slugParams);
   const slug = slugParams?.join("/");
@@ -117,13 +113,13 @@ export default async function PostPage({ params }: PostPageProps) {
                   size={18}
                   className="group-hover:-translate-x-1 duration-300 group-hover:text-muted-foreground"
                 />
-                <span className="group-hover:text-muted-foreground duration-300">
+                <span className="text-lg group-hover:text-muted-foreground duration-300">
                   Back
                 </span>
               </Link>
             </div>
-            <div className="text-sm flex flex-row space-x-2 items-center">
-              <span className="text-muted-foreground">
+            <div className="text-base flex flex-row space-x-2 items-center">
+              <span className="text-base text-muted-foreground">
                 {formateDate(post.date)}
               </span>
               <span className="h-1 w-1 bg-muted-foreground  rounded-full" />
@@ -134,9 +130,9 @@ export default async function PostPage({ params }: PostPageProps) {
               <span>{<ChangeLocalPost params={params} />}</span>
             </div>
           </div>
-          <h1 className=" text-5xl max-sm:text-3xl font-bold">{post.title}</h1>
+          <h1 className=" text-4xl max-md:text-3xl font-bold">{post.title}</h1>
 
-          <p  className="text-sm text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             {t("whoAndWhenWrittenPost", {
               author: (
                 <span className="  underline font-bold">Ngako Daryl</span>
@@ -152,7 +148,7 @@ export default async function PostPage({ params }: PostPageProps) {
             <IncrementLikesCountBtn slug={post.slug} />
           </div>
         </div>
-
+      
         <Separator className="my-4" />
         <div id="prose" className="prose prose-invert text-muted-foreground">
           <MDXContent code={post.body} />

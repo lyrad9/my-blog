@@ -14,11 +14,11 @@ export const Callout = ({
   return (
     <div
       className={cn(
-        "my-6 items-start border text-white  border-l-[4.5px] p-4 w-full dark:max-w-none",
+        "my-6  border-l-4 text-opacity-75 px-2 py-4 lg:px-4 lg:py-6  items-start w-full dark:max-w-none",
         {
           "border-red-900 bg-red-50 dark:prose ": type === "danger",
           "border-yellow-900 bg-yellow-50  ": type === "warning",
-          "border-blue-900 text-white bg-blue-500  ": type === "info",
+          "border-info bg-info/20  ": type === "info",
         }
       )}
       {...props}

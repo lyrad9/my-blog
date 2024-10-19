@@ -1,15 +1,13 @@
 "use client";
 import React from "react";
-
-import { Section } from "@/components/Section";
-import { sortPosts } from "../components/utils/functions";
-import { Code } from "@/components/Code";
+import { Code } from "@/src/components/shared/Code";
 import { useI18n, useScopedI18n } from "@/locales/client";
-import { tabCategories } from "../components/utils/constants";
+import { tabCategories } from "../../../../src/components/utils/constants";
 import { useSearchParams } from "next/navigation";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import clsx from "clsx";
+
+import { cn } from "@/src/lib/utils";
 export const CategoriesPosts = ({ className }: { className?: string }) => {
   const t = useI18n();
   const pathname = usePathname();
@@ -29,9 +27,9 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
   return (
     <section className={className}>
       <p
-        className={clsx("mb-8 font-caption text-xl", 
-     pathname.match(/^\/(fr|en)$/) ? "md:text-center " : "tracking-wider",
-        )}
+        className={cn("mb-8 font-caption text-2xl", {
+          "tracking-wider": !pathname.match(/^\/(fr|en)$/),
+        })}
       >
         {t("categoriesPosts")}
       </p>
@@ -39,7 +37,7 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
         {tabCategories.map((category, index) => (
           <Link key={index} href={createPostURL(category)}>
             <Code
-              className={clsx(
+              className={cn(
                 "px-2 py-1 rounded-sm border-none text-sm text-muted-foreground dark:bg-accent bg-muted",
                 {
                   "dark:text-primary/60 dark:bg-primary/20 bg-primary/10 text-primary ":

@@ -23,15 +23,13 @@ const CopyPasteButton = ({className,getTextContent}:{className?:string, getTextC
   return (
     <motion.button
     
+    
       whileTap={{ scale: 0.9, opacity: 0.8 }}
       onClick={() => {
         setCopied(!copied)
         copy(getTextContent())
       }}
-      className={clsx(
-        "",
-        className
-      )}
+     
     >
       <AnimatePresence mode="wait" initial={false}>
         {copied ? (
@@ -42,7 +40,7 @@ const CopyPasteButton = ({className,getTextContent}:{className?:string, getTextC
             animate="visible"
             exit="hidden"
           >
-            <Check size={16} />
+            <Check className={className}  />
           </motion.span>
         ) : (
           <motion.span
@@ -52,7 +50,7 @@ const CopyPasteButton = ({className,getTextContent}:{className?:string, getTextC
             animate="visible"
             exit="hidden"
           >
-              <Copy className="size-3" />
+              <Copy className={className} />
           </motion.span>
         )}
       </AnimatePresence>
