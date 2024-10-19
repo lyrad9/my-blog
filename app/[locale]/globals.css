@@ -49,7 +49,11 @@ body {
       --destructive-foreground: 60 9.1% 97.8%;
       --ring: 28.87 83.46% 50.2%;
       --radius: 0.5rem;
-      --info:221.2 83.2% 53.3%
+      --info:221.2 83.2% 53.3%;
+      --warning: 44 88% 77%;
+      --warning-foreground: 44 88% 17%;
+    
+      
     }
 
     .dark {
@@ -73,7 +77,9 @@ body {
       --destructive-foreground: 60 9.1% 97.8%;
       --ring: 28.87 83.46% 50.2%;
       --radius: 0.5rem;
-      --info:217.2 91.2% 59.8%
+      --info:217.2 91.2% 59.8%;
+      --warning: 27 77% 14%;
+      --warning-foreground: 27 77% 74%;
     }
   }
 }
