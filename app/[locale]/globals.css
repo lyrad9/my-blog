@@ -93,10 +93,10 @@ body {
   }
 }
 
-.prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,strong,span):not(:where([class~="custom"], [class~="custom"] *))  {
+/* .prose :where(h1,h2,h3,h4,h5,h6,a,blockquote,code,span,strong):not(:where([class~="custom"], [class~="custom"] *))  {
   color:hsl(var(--foreground));
  
-}
+} */
 .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
  @apply font-bold mt-12 mb-5 text-3xl max-md:text-2xl;
 
@@ -139,9 +139,3 @@ body {
  
   margin-top: 0 !important;
 }
-/* .prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  @apply text-foreground;
-   color: var(--tw-prose-code);
-  font-weight: 600;
-  font-size: 0.875em; 
-} */

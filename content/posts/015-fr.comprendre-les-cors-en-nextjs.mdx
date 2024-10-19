@@ -60,7 +60,7 @@ avec les en-têtes CORS suivants:
 - <Code>Access-Control-Alllow-Methods:</Code> indique les méthodes HTTP
   autorisées (GET, POST, PUT, DELETE,etc..)
 - <Code>Access-Control-Allow-Credentials:</Code> indique si le navigateur doit
-  inclure des identifiants (<Code>cookies</Code> ou une <Code>authentification HTTP </Code>
+  inclure des identifiants (<Code>cookies</Code> ou une <Code>authentification HTTP</Code>
   ) dans la demande d'origine croisée.
 - <Code>etc...</Code>
 
@@ -118,13 +118,13 @@ export async function GET(req: NextRequest) {
   const posts = getPosts();
   const recentPosts = posts.slice(0, 3);
   console.log(JSON.stringify(recentPosts));
-  return NextResponse.json({ posts: recentPosts });
+  return NextResponse.json({ posts: recentPosts })
 }
 ```
 
 2. **utilisation de l'API**
 
-```typeScript showLineNumbers
+```ts showLineNumbers
 import { PostsResponseSchema } from "@/features/posts/posts.schema";
 export async function getLatestPosts() {
   const options = {
@@ -141,7 +141,8 @@ export async function getLatestPosts() {
 }
 ```
 
-```typeScript showLineNumbers {18}
+
+```ts showLineNumbers {18}
 "use client";
 import React from "react";
 import {
@@ -220,16 +221,20 @@ const nextConfig = {
 };
 module.exports = nextConfig;
 ```
-<Callout type="warning">
-N'oublies pas de redémarrer ton serveur NextJS après avoir appliquer les changements.
-</Callout>
 
+<Callout type="warning">
+<div className='not-last-margin-bottom'>
+  N'oublies pas de redémarrer ton serveur 
+  NextJS après avoir appliquer les changements.
+</div>
+
+</Callout>
 
 ### utilisation du fichier <Code>middleware.ts</Code>
 
 Le <Code>middleware</Code> en nextjs est une fonction qui s'éxécute avant qu'une requête ne soit terminée. Tu peux définir des en-têtes CORS dans le middleware pour autoriser les requêtes d'origine croisée.
 
-```typeScript showLineNumbers title="middleware.ts"
+```ts showLineNumbers title="middleware.ts"
 import { NextRequest, NextResponse } from "next/server";
 
 const corsOptions = {
@@ -254,7 +259,7 @@ export const config = {
 
 Tu peux configurer les en-têtes CORS headers pour chaque route individuellment.
 
-```typeScript showLineNumbers
+```ts showLineNumbers
 export async function GET(request: Request) {
   return new Response("Hello, C'est Daryl!", {
     status: 200,
@@ -276,7 +281,7 @@ Si tu souhaites autoriser plusieurs origines CORS, mais pas toutes, tu dois écr
 
 ### modification du fichier <Code>middelware.ts</Code>
 
-```typeScript showLineNumbers title="middleware.ts"
+```ts showLineNumbers title="middleware.ts"
 import { NextRequest, NextResponse } from "next/server";
 // the list of all allowed origins
 const allowedOrigins = [
@@ -324,7 +329,7 @@ nextjs-cors en exécutant la commande suivante dans ton application:{" "}
 
 Ensuite utilise le comme ceci dans ton API:
 
-```typeScript
+```ts
 import { NextResponse } from "next/server";
 import Cors from "nextjs-cors";
 

@@ -86,10 +86,10 @@ export default defineConfig({
     clean: true,
   },
   collections: { posts },
-  markdown: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    rehypePlugins: [[rehypePlugin as any, { theme: 'nord' }]]
-  },
+  // markdown: {
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   rehypePlugins: [[rehypePlugin as any, { theme: 'nord' }]]
+  // },
   mdx: {
   
     // rehypePlugin,

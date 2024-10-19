@@ -32,8 +32,8 @@ export const MdxPre = ({ children, className, ...props }: MdxPreProps) => {
             <code
               className={cn(
                 "data-language data-file-name text-gray-500",
-                { "!text-yellow-500": language === "javaScript" },
-                { "!text-blue-500": language === "typeScript" },
+                { "!text-yellow-500": language === "js" },
+                { "!text-blue-500": language === "ts" },
                 { "!text-orange-400": language === "json" }
               )}
             >
