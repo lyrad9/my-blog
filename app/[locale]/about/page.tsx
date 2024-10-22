@@ -7,6 +7,7 @@ import { Spacing } from "@/src/components/shared/Spacing";
 import { Code } from "@/src/components/shared/Code";
 import Link from "next/link";
 import { Icons } from "@/src/components/svg/icons";
+import { getUrl } from "../posts/[...slug]/getUrl";
 
 import type { Metadata } from "next";
 // export const dynamic = "force-static";
