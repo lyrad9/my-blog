@@ -4,12 +4,24 @@ import { Section } from "@/src/components/shared/Section";
 import Image from "next/image";
 import me from "../../../public/me.jpg";
 import { Spacing } from "@/src/components/shared/Spacing";
-import { getI18n } from "@/locales/server";
 import { Code } from "@/src/components/shared/Code";
 import Link from "next/link";
 import { Icons } from "@/src/components/svg/icons";
-import notFound from "../../../public/404.gif";
+
+import type { Metadata } from "next";
 // export const dynamic = "force-static";
+const url = getUrl()
+export const metadata: Metadata = {
+  title: "Blog de lyrad | About me",
+  description:
+    "I share with you my experience as a web developer and my daily life through my posts.",
+    alternates:{
+      languages:{
+        fr: `${url}/fr/about`,
+        en: `${url}/en/about`
+      }
+    }
+  };
 
 import { useI18n, useScopedI18n } from "@/locales/client";
 const AboutPage = () => {
@@ -61,7 +73,6 @@ const AboutPage = () => {
             className="w-52 rounded-full h-52 object-cover object-top"
             alt="profil"
             src={me}
-          
           />
         </div>
       </div>
