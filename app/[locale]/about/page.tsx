@@ -1,4 +1,4 @@
-"use client";
+
 import React from "react";
 import { Section } from "@/src/components/shared/Section";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { Code } from "@/src/components/shared/Code";
 import Link from "next/link";
 import { Icons } from "@/src/components/svg/icons";
 import { getUrl } from "../posts/[...slug]/getUrl";
-
+import { getI18n } from "@/locales/server";
 import type { Metadata } from "next";
 // export const dynamic = "force-static";
 const url = getUrl();
@@ -28,8 +28,8 @@ export async function generateMetadata() {
 }
 
 import { useI18n, useScopedI18n } from "@/locales/client";
-const AboutPage = () => {
-  const t = useI18n();
+const AboutPage = async() => {
+  const t = await getI18n();
   return (
     <Section className="">
       <Spacing size="md" />
