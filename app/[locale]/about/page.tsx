@@ -17,7 +17,7 @@ export async function generateMetadata() {
   return {
     title: "Blog de lyrad | About me",
     description:
-      "I share with you my experience as a web developer and my daily life through my posts.",
+    "Hi! I'm Daryl. I have been passionate about web development since I was 17. I like to share my experience as a developer.",
     alternates: {
       languages: {
         fr: `${url}/fr/about`,

@@ -29,7 +29,8 @@ const url = getUrl()
 export const metadata: Metadata = {
   title: "Blog de lyrad",
   description:
-    "Hi! I'm Daryl. I have been passionate about web development since I was 17. I like to share my experience as a developer.",
+  "I share with you my experience as a web developer and my daily life through my posts",
+  
     alternates:{
       languages:{
         fr: `${url}/fr`,
