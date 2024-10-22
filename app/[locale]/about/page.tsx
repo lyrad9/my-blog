@@ -11,18 +11,21 @@ import { getUrl } from "../posts/[...slug]/getUrl";
 
 import type { Metadata } from "next";
 // export const dynamic = "force-static";
-const url = getUrl()
-export const metadata: Metadata = {
-  title: "Blog de lyrad | About me",
-  description:
-    "I share with you my experience as a web developer and my daily life through my posts.",
-    alternates:{
-      languages:{
+const url = getUrl();
+
+export async function generateMetadata() {
+  return {
+    title: "Blog de lyrad | About me",
+    description:
+      "I share with you my experience as a web developer and my daily life through my posts.",
+    alternates: {
+      languages: {
         fr: `${url}/fr/about`,
-        en: `${url}/en/about`
-      }
-    }
+        en: `${url}/en/about`,
+      },
+    },
   };
+}
 
 import { useI18n, useScopedI18n } from "@/locales/client";
 const AboutPage = () => {
