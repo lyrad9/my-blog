@@ -27,7 +27,7 @@ export async function generateMetadata() {
   };
 }
 
-import { useI18n, useScopedI18n } from "@/locales/client";
+// import { useI18n, useScopedI18n } from "@/locales/client";
 const AboutPage = async() => {
   const t = await getI18n();
   return (

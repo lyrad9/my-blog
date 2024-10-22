@@ -27,7 +27,7 @@ const AnekTelugu = Anek_Telugu({
 });
 const url = getUrl()
 export const metadata: Metadata = {
-  title: "Blog de lyrad | posts",
+  title: "Blog de lyrad",
   description:
     "Hi! I'm Daryl. I have been passionate about web development since I was 17. I like to share my experience as a developer.",
     alternates:{
