@@ -67,6 +67,14 @@ export function MobileNav() {
               >
                 About
               </MobileLink>
+              <MobileLink
+                href="https://lyrad.vercel.app"
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary hidden md:inline-block"
+                )}
+              >
+                My website
+              </MobileLink>
             </div>
             <Separator />
             <div className="flex flex-col gap-2 mt-2">

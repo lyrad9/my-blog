@@ -45,21 +45,35 @@ export async function generateMetadata({
       description: "Page not found",
     };
   }
+  const ogSearchParams = new URLSearchParams();
+  ogSearchParams.set("title", post.title);
 
   return {
     title: post.title,
     description: post.description,
-    authors: [{ name: siteConfig.author }],
+    authors: [{ name: siteConfig.author, url:"https://lyrad.vercel.app" }],
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
       url: `https://darylblog/${post.slug}/vercel.app`,
+      images: [
+        {
+          url: `/api/og?${ogSearchParams.toString()}`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
+   
+    category: post.categories.join(','),
+    keywords: post.meta.keywords,
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: [`/api/og?${ogSearchParams.toString()}`],
     },
     alternates: post.versions
       ? {
@@ -113,7 +127,7 @@ export default async function PostPage({ params }: PostPageProps) {
                   size={18}
                   className="group-hover:-translate-x-1 duration-300 group-hover:text-muted-foreground"
                 />
-                <span className="text-lg group-hover:text-muted-foreground duration-300">
+                <span className="text-lg size-6 group-hover:text-muted-foreground duration-300">
                   Back
                 </span>
               </Link>

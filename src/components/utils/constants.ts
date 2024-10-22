@@ -7,7 +7,7 @@ import edu from "../../../public/cv/education.png"
 import exp from "../../../public/cv/experiences.png"
 import err_cors from "../../../public/err_cors.png"
 import ex_cors from "../../../public/ex_cors.jpg"
-
+import canva from "../../../public/cv/canva.png"
 export const tabCategories =["design","astuce","story","advice","nextjs","css","javaScript"]
  const images = [
     {
@@ -53,6 +53,12 @@ export const tabCategories =["design","astuce","story","advice","nextjs","css","
     {
         path:"/ex_cors",
         src:ex_cors,
+    
+        
+    },
+    {
+        path:"/canva",
+        src:canva,
     
         
     },

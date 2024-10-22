@@ -28,7 +28,7 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
     <section className={className}>
       <p
         className={cn("mb-8 font-caption text-2xl", {
-          "tracking-wider": !pathname.match(/^\/(fr|en)$/),
+          // "tracking-wider": !pathname.match(/^\/(fr|en)$/),
         })}
       >
         {t("categoriesPosts")}

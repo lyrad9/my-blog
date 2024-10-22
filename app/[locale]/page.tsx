@@ -11,20 +11,19 @@ export default async function Home() {
   const t = await getI18n();
   return (
     <Section className="">
-      {/* <Spotlight className="top-5 -left-10 md:left-60 md:-top-20" fill="" /> */}
+      <Spotlight className="top-5 -left-10 md:left-60 md:-top-20" fill="" />
       <Spacing size="md" />
       <div className="flex justify-center">
-        <div className="max-w-2xl grid gap-2 ">
-          <h2 className="font-semibold text-muted-foreground dark:text-primary-foreground/70  text-3xl leading-10 max-sm:text-2xl ">
+        <div className="max-w-3xl grid gap-2 ">
+          <h2 className="font-semibold dark:text-white text-muted-foreground  text-3xl leading-10 max-sm:text-2xl ">
             {t("welcomeInMyBlog", {
               career: (
-                <Code className="font-sans text-primary dark:text-primary-foreground">
-                  {t("career")}
-                </Code>
+                <Code className="font-sans text-primary">{t("career")}</Code>
               ),
+              posts: <Code className="font-sans text-primary">posts</Code>,
             })}
           </h2>
-          <div className="flex gap-2 underline text-sm">
+          <div className="text-black dark:text-muted-foreground flex gap-2 underline text-sm">
             <Link href="/posts">{t("seeMyPosts")}</Link>
             <Link href="#">Github</Link>
           </div>

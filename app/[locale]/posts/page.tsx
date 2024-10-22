@@ -43,7 +43,7 @@ const BlogPage = async ({
       <div className="flex flex-col gap-8">
         <CategoriesPosts />
         <div>
-          <h1 className="inline-block text-2xl tracking-wider font-mono">
+          <h1 className="text-2xl">
             Posts
           </h1>
 

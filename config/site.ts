@@ -1,5 +1,5 @@
 export const siteConfig = {
-    name:'Ngakodaryl',
+    name:'lyradBlog',
     url:"cc",
     description:"I share my experience as developer with this blog",
     author:"Ngako daryl",
