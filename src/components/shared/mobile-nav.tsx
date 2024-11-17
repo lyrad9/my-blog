@@ -49,7 +49,7 @@ export function MobileNav() {
                 className={clsx(
                   "hover:text-primary transition-colors text-muted-foreground",
                   {
-                    "text-primary ": pathname.match(
+                    "text-primary ": pathname?.match(
                       /^\/(fr|en)\/posts(?:\/.*)?$/
                     ),
                   }
@@ -62,7 +62,7 @@ export function MobileNav() {
                 onOpenChange={setOpen}
                 className={clsx(
                   "hover:text-primary transition-colors text-muted-foreground",
-                  { "text-primary ": pathname.match(/^\/(fr|en)\/about$/) }
+                  { "text-primary ": pathname?.match(/^\/(fr|en)\/about$/) }
                 )}
               >
                 About
