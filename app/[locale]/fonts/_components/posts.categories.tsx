@@ -14,15 +14,15 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
   const searchParams = useSearchParams();
 
   const createPostURL = (category: string) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams ?? undefined);
     if (params.has("category", category)) params.set("category", "");
     else params.set("category", category);
 
-    if (pathname.match(/^\/(fr|en)$/))
+    if (pathname?.match(/^\/(fr|en)$/))
       return `${pathname}/posts/?${params.toString()}`;
     return `${pathname}?${params.toString()}`;
   };
-  console.log(pathname.match(/^\/(fr|en)$/));
+  // console.log(pathname?.match(/^\/(fr|en)$/));
 
   return (
     <section className={className}>
@@ -41,7 +41,7 @@ export const CategoriesPosts = ({ className }: { className?: string }) => {
                 "px-2 py-1 rounded-sm border-none text-sm text-muted-foreground dark:bg-accent bg-muted",
                 {
                   "dark:text-primary/60 dark:bg-primary/20 bg-primary/10 text-primary ":
-                    searchParams.has("category", category),
+                    searchParams?.has("category", category),
                 }
               )}
             >
