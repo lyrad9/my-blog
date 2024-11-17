@@ -1,0 +1,265 @@
+---
+title: Comprendre les API Routes et les Route Handlers dans Next.js
+description: En NextJS, les API Routes et les Route Handlers offrent des moyens de créer des points de terminaison API, mais ils fonctionnent différemment. Dans cet article je te montrerai comment les utiliser.
+date: 2024-11-11
+lang: fr
+meta:
+  keywords:
+    - API Routes
+    - Routes handlers
+    - GET,POST,PUT,DELETE
+    - NextRequest,NextResponse
+    - App Router
+    - pages Router
+
+categories:
+  - nextjs
+
+published: true
+translation: dont-reinvent-the-wheel
+bannerImage: https://lzdzy7eapvafpa4c.public.blob.vercel-storage.com/bannerPosts/fr-wheel.jpg
+---
+
+Une <Code>API</Code> (**Application programming Interface**) est un ensemble de points de terminaison ou **endpoints** côté serveur qui vous permet de  gérer des requêtes et fournir des données à votre application. C'est quoi une <Code>APi Route</Code>? C'est quoi une <Code>Route Handler</Code>? Nous verrons cela ensemble.
+
+
+
+## Les API Routes: La Solution Classique
+
+Les <Code>API Routes</Code> sont l'approche traditionnelle pour gérer les endpoints dans NextJS. Elles ont été conçues pour fonctionner dans le modèle de routage basé sur les <Code>pages.</Code>
+
+### Où construire les API Routes?
+
+Les <Code>API Routes</Code> sont créées dans le dossier <Code>pages/api</Code>. Chaque fichier dans ce dossier devient un endpoint d'API avec le nom du fichier comme URL.
+
+Par exemple...
+
+_<Code>pages/api/user.ts</Code> correspond à l'URL <Code>/api/user.</Code>_
+
+### Syntaxe
+
+Chaque API Route est essentiellement une fonction **JavaScript** ou **TypeScript** qui exporte un <Code>handler</Code>. Cette fonction accepte un objet <Code>req</Code> (**requête**) et <Code>res</Code> (**réponse**) pour gérer la logique de l'API.
+
+```ts showLineNumbers title="pages/api/user.ts"
+import { NextApiRequest, NextApiResponse } from "next";
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === "GET") {
+    res.status(200).json({ message: "hello Word!" });
+  }
+}
+```
+
+## Les Route Handlers : La Nouvelle Génération d'endpoints
+
+Avec la sortie du modèle <Code>App Router</Code> dans Next.js, une approche plus avancée est apparue: **les Route Handlers**. Conçus pour les projets qui utilisent le dossier <Code>app</Code>, ils permettent une meilleure organisation des endpoints.
+
+### Où construire les Routes Handlers?
+
+Les <Code>Route Handlers</Code> se trouvent dans le dossier app. Ils sont définis dans des fichiers <Code>route.ts</Code> ou <Code>route.js</Code> placés à l'intérieur de dossiers correspondant aux routes.
+
+<MdxImage
+  title="dddd"
+  path="api_nextjs/app_router.png"
+  alt="app_router_structure"
+/>
+
+### Syntaxe
+
+Les Routes handlers (en français **gestionnaire d'itinéraire**) comme son nom l'indique vont permettre de créer une itinéraire spécifique pour chaque **méthode HTTP** (<Code>GET</Code>, <Code>POST</Code>, <Code>etc...</Code>). Ce qui rend le code plus lisible et modulaire.
+
+```ts showLineNumbers title="app/api/user/route.ts"
+export async function GET(req: Request) {
+  return new Response("hello word!", { status: 200 });
+}
+
+export async function POST(req: Request) {
+  const data = await req.json();
+  return new Response(JSON.stringify({ data }), { status: 200 });
+}
+```
+
+## API Routes VS Routes Handlers
+
+
+
+
+### Envoyer une réponse JSON
+<Code>JSON</Code> (**JavaScript Object Notation**) est un format de texte simple et léger utilisé souvent pour échanger des données entre  le client et le serveur web.
+
+
+```json showLineNumbers 
+{
+  "nom": "daryl",
+  "âge": 20
+}
+```
+
+La réponse retournée par le serveur au client doit être une <Code>réponse JSON</Code>.
+
+**Exemple dans le dossier <Code>Pages</Code>**
+
+```ts showLineNumbers title="pages/api/identity.ts"
+import {NextApiResponse } from "next";
+
+export default function handler(res:NextApiResponse) {
+ const user = {id:2, name:"daryl"}
+  return res.json({user});
+}
+```
+
+**Exemple dans le dossier <Code>App</Code>**
+
+```ts showLineNumbers title="app/api/identity/route.ts"
+import {NextResponse } from "next/server";
+export default function GET(req:Request) {
+ const user = {id:2, name:"daryl"}
+ return NextResponse.json({user}) 
+}
+```
+
+### Les routes dynamiques
+
+une <Code>route dynamique</Code> permet de créer des <Code>pages</Code> ou des <Code>API</Code> qui peuvent changer en fonction de paramètres dynamiques comme des **identifiants d'articles,** **l'identifiant d'un utilisateur,** **etc...** Ces routes sont utiles pour gérer des contenus uniques basés sur des paramètres.
+
+Par exemple...
+
+_**Une API qui retourne les informations d'un utilisateur spécifique en fonction de son identifiant.**_
+
+**Exemple de route dynamique dans le dossier <Code>Pages</Code>**
+
+Supposons que tu souhaites créer une API pour afficher les informations des utilisateurs en fonction de leur identifiant.
+
+Tu crées la route comme suit:
+
+<MdxImage
+  title="Exemple de route dynamique dans le dossier Pages"
+  path="api_nextjs/users_page_router.png"
+  alt="users_page_router"
+/>
+
+Le nom **[id].ts** indique que **id** est un paramètre dynamique dans la route <Code>/users/[id]</Code>. Par exemple, les URLs <Code>/users/1</Code> ou users/2** vont toutes deux utiliser ce fichier pour générer la route API.
+
+Ensuite nous accédons à la valeur:
+
+```ts showLineNumbers title="pages/api/users/[id].ts"
+import { NextApiRequest, NextApiResponse } from "next";
+import users from "./users"
+export default function handler(req:NextApiRequest, res:NextApiResponse) {
+  const { id } = req.query;
+  const user = users.find((user) => user.id === id)
+  return res.status(200).json({user});
+}
+```
+
+
+**Exemple de route dynamique dans le Dossier <Code>App</Code>**
+
+Reprenons le même exemple, cette fois-ci dans le dossier <Code>App</Code>.
+
+
+Tu crées la route comme suit:
+
+<MdxImage
+  title="Exemple de route dynamique dans le dossier App"
+  path="api_nextjs/users_app_router.png"
+  alt="users_app_router"
+/>
+
+Ensuite nous accédons à la valeur:
+
+```ts showLineNumbers title="app/api/users/[id]/route.ts"
+import users from "./users"
+export async function GET(req:Request,{ params }: { params: Promise<{ id: string }> }) {
+ const userId = (await params).id
+const user = users.find((user) => user.id === id)
+  return new Response(user,{
+   status: 200
+  })   
+}
+```
+
+### Les paramètres de requêtes URL
+Les paramètres passés à l'URL vont pouvoir être récupéré avec l'objet <Code>Request</Code> passé en paramètre.
+
+**Exemple dans le dossier <Code>Pages</Code>**
+
+```ts showLineNumbers title="app/api/search/hello.ts
+
+export default function handler(req:Request) {
+  const paramsSearch = req.url;
+ //For the URL /api/search?q=hello paramsSearch is an object which contains the property q which has the value "hello"
+  return new Response(query)   
+}
+```
+**Exemple dans le dossier <Code>App</Code>**
+
+```ts showLineNumbers title="app/api/search/route.ts"
+
+export default function GET(req:Request) {
+  const { searchParams } = new URL(req.url);
+  const query = searchParams.get("query");
+//query is "hello" for /api/search?q=hello
+ 
+  return new Response(query)   
+}
+```
+### Les paramètres passés dans le corps de la requête
+
+Tu peux lire les paramètres passés dans le corps d'une requête (**le body**) API.
+
+**Exemple dans le dossier <Code>Pages</Code>**
+
+```ts showLineNumbers title="pages/api/create-product.ts"
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default function handler(req:NextApiRequest) {
+  const product = req.body;
+  //product is an object which contains properties like id, name and description
+  try {
+    // I use prisma for create product in the database
+     const result = await prisma.product.create({
+    data:{product}
+  }) 
+    return res.status(200).send({result});
+  } catch (error) {
+   return res.status(500).send({ error: 'failed to create product' })
+  } 
+}
+```
+
+
+**Exemple avec le dossier <Code>APP</Code>**
+
+
+```ts showLineNumbers title="app/api/create-product/route.ts"
+import { NextApiRequest, NextApiResponse } from "next";
+
+export async function POST(req:Request) {
+
+  const product = await req.json();
+  //product is an object which contains properties like id, name and description
+  try {
+    const result = await prisma.product.create({
+    data:{product}
+  }) 
+   return Response.json({ result })
+  } catch (error) {
+    return Response.error()
+  }
+  
+}
+```
+### Différence entre les API Routes et les Routes Habndlers ###
+
+
+Contrairement aux Routes Handlers, les API Routes sont faciles à configurer et à comprendre surtout pour des développeurs qui ont déja eu à utiliser [Express](https://tailwindcss.com/). Mais les Routes handlers permettent de définir chaque méthode HTTP séparémment rendant le code plus lisible.
+
+Voici une image ci-dessous qui illustre une comparaison entre ces deux approches:
+
+<MdxImage
+  title="API Routes vs Routes Handlers"
+  path="api_nextjs/nextjs_api.png"
+  alt="users_app_router"
+/>
+
+## Conclusion

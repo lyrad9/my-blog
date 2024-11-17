@@ -1,6 +1,6 @@
 import { posts } from "#site/content";
 import { sortPosts } from "@/src/components/utils/functions";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse,  NextRequest } from "next/server";
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
@@ -9,7 +9,7 @@ const allowedOrigins = [
 ];
 export async function GET(req: NextRequest) {
   // Liste blanche des origines autorisées
-   
+
   // Récupérer l'origine de la requête
   const origin = req.headers.get("origin");
 
