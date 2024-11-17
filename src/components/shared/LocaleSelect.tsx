@@ -18,7 +18,7 @@ export const LocaleSelect = () => {
   const changeLocale = useChangeLocale();
   const pathname = usePathname();
   const router = useRouter();
-  if (pathname.match(/^\/(fr|en)\/posts\/.+$/)) return null;
+  if (pathname?.match(/^\/(fr|en)\/posts\/.+$/)) return null;
   const getPostInOtherLang = (lang: "fr" | "en") => {
     changeLocale(lang);
   };
