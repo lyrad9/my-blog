@@ -18,7 +18,7 @@ const MainNav = () => {
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden md:inline-block",
           {
-            "text-primary underline": pathname.match(
+            "text-primary underline": pathname?.match(
               /^\/(fr|en)\/posts(?:\/.*)?$/
             ),
           }
@@ -30,7 +30,7 @@ const MainNav = () => {
         href="/about"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden md:inline-block",
-          { "text-primary underline": pathname.match(/^\/(fr|en)\/about$/) }
+          { "text-primary underline": pathname?.match(/^\/(fr|en)\/about$/) }
         )}
       >
         About
