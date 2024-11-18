@@ -113,7 +113,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
   // const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
-    <Section className="relative -z-10">
+    <Section className="relative z-10">
       <Spacing size="md" />
       <article className="article">
         <div className="grid gap-3">
