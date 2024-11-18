@@ -12,7 +12,7 @@ import { LocaleSelect } from "@/src/components/shared/LocaleSelect";
 import { Section } from "./Section";
 export const SiteHeader = () => {
   return (
-    <header className="sticky top-0 w-full z-50  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Section className=" flex h-14  items-center">
         <MainNav />
         <div className="flex flex-1 items-center justify-end gap-2">

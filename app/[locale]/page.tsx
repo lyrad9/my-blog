@@ -11,7 +11,7 @@ export default async function Home() {
   const t = await getI18n();
   return (
     <main className="min-h-screen h-full w-full">
-      <Spotlight className="z-60 top-5 -left-10 md:left-60 md:-top-20" fill="" />
+      <Spotlight className=" top-5 -left-10 md:left-60 md:-top-20" fill="" />
       <Spacing size="md" />
       <Section className="flex flex-col">
         <div className="flex justify-center">
