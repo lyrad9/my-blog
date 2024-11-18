@@ -13,12 +13,12 @@ import { Section } from "./Section";
 export const SiteHeader = () => {
   return (
     <header className="z-20 sticky top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Section className=" flex h-20  items-center">
+      <Section className=" flex h-20 items-center">
         <Link href="/" className="text-lg font-light text-foreground ">
           {/* <Icons.logo className="w-6 h-6"  /> */}
           Darylngako
         </Link>
-        <MainNav className="text-lg flex items-center justify-center space-x-4 lg:space-x-4 flex-1" />
+        <MainNav className="text-lg flex items-center justify-center space-x-2 lg:space-x-4 flex-1" />
         <div className="flex items-center justify-center gap-1">
           <LocaleSelect />
           {/* <nav className="flex items-center">
