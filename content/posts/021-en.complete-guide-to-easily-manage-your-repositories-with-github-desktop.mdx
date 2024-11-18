@@ -1,0 +1,204 @@
+---
+title: The Complete Guide to Easily Manage Your Repositories with Github Desktop
+description: Github Desktop has become an essential tool for developers who want to manage their projects with ease without having to type any Git commands. In this article, we'll explore the key features of Github Desktop and see how it can simplify your work.
+date: 2024-11-17
+meta:
+  keywords:
+    - Github Desktop
+    - commits
+    - branches
+    - command line
+    - Git
+    - push
+    - pull
+
+categories:
+  - astuce
+lang: en
+translation: le-guide-complet-pour-gerer-facilement-vos-repository-avec-github-desktop
+published: true
+bannerImage: https://lzdzy7eapvafpa4c.public.blob.vercel-storage.com/bannerPosts/debutant.jpg
+---
+
+<MdxImage isBanner="true" path="banner/img_cors.jpg" alt="banner-CORS" />
+For a beginner in the programming world, it's difficult to become familiar with all these Git commands. That's why Github created Github Desktop, a simple application to manage versioning, collaboration, and file storage.
+
+## What is Github Desktop?
+
+<Code>Github Desktop</Code> is a free desktop application developed by Github that allows users to interact with their Github repositories locally. It's particularly useful for beginners or those who prefer a graphical interface to terminal commands.
+
+<MdxImage
+  title="Github Desktop main interface"
+  path="GD/github_desktop.png"
+  alt="Github Desktop main interface"
+/>
+
+## Github Desktop Features
+
+Github Desktop offers a clear and easy-to-use interface that allows you to view your branches, create repositories, clone repositories, manage your changes, and synchronize your repositories without typing a single Git command.
+
+### Repository Management
+
+A repository is a space where you can store and manage source code, as well as other project-related files in a centralized and collaborative way.
+
+There are several types of repositories:
+
+- **Public repositories:** accessible to everyone
+- **Private repositories:** accessible only to authorized collaborators
+- **Fork repositories:** which are copies of existing repositories
+
+In Github Desktop, there are several options to create a repository:
+
+1. **Create a new repository**
+
+Before starting to write any code, you can create a repository directly on your computer and make it available on Github later. To do this:
+
+- In Github Desktop, click on **File > New repository** (or simply use the keyboard shortcut <Code>Ctrl</Code> + <Code>N</Code>).
+
+<MdxImage
+  title="Create a new repository"
+  path="GD/new_repository.png"
+  alt="Create a new repository"
+/>
+
+- Then, fill in the different fields (**repository name,** **project description,** **local project location,** **etc...**)
+
+<MdxImage
+  title="Fill in the different fields"
+  path="GD/field_new_repository.png"
+  alt="Fill in the different fields"
+/>
+
+- Finally click on **Create repository**
+
+2. **Add a local repository**
+
+You've already started a project locally and want to make it available on Github later, for this:
+
+- In Github Desktop, click on **File** > **Add local repository** (or simply use the keyboard shortcut <Code>Ctrl</Code> + <Code>O</Code>).
+
+<MdxImage
+  title="Create a local repository"
+  path="GD/local_repository.png"
+  alt="Create a local repository"
+/>
+
+- Then choose the location where your repository is
+
+<MdxImage
+  title="Choose the repository location"
+  path="GD/path_local_repository.png"
+  alt="Show repository location"
+/>
+- And finally click on **Add repository**
+
+<MdxImage
+  title="Add the repository"
+  path="GD/save_path_local_repository.png"
+  alt="Add the repository"
+/>
+
+3. **Clone a repository**
+
+You can also create a repository by cloning a project already hosted on Github.
+
+- In Github Desktop, click on **File** > **Clone repository** (or simply use the keyboard shortcut <Code>Ctrl</Code> + <Code>Shift</Code> + <Code>O</Code>).
+
+<MdxImage
+  title="Clone a repository"
+  path="GD/clone_repository.png"
+  alt="Clone a repository"
+/>
+
+- Then enter the repository **URL** and choose the **local location** that will contain your repository.
+
+<MdxImage
+  title="Fill in repository URL and local location"
+  path="GD/url_clone_repository.png"
+  alt="Fill in repository URL and local location"
+/>
+- Finally click on **Clone**
+
+<MdxImage
+  title="Clone the repository"
+  path="GD/save_url_clone_repository.png"
+  alt="Clone the repository"
+/>
+
+### Publish a repository
+
+After creating a repository, you need to make it available on Github by clicking on **Publish repository** or using the keyboard shortcut <Code>Ctrl</Code> + <Code>P</Code>. This way you can access your project on Github, **share it**, **collaborate** with others and **make changes** to it.
+
+<MdxImage
+  title="Publish a repository"
+  path="GD/publish_repository.png"
+  alt="Publish a repository"
+/>
+
+### Changes preview
+
+Before validating your changes, Github Desktop shows you a detailed preview of **modified,** **added** or **deleted** files. This allows you to validate only the necessary changes in the **Staging Area**.
+
+> The <Code>Staging Area</Code> is an area where you can modify, add and remove changes before including them in a commit.
+
+<MdxImage
+  title="Preview of changes made to the repository"
+  path="GD/apercu_updates.png"
+  alt="Preview of changes made to the repository"
+/>
+
+### Validate changes and synchronize repositories
+
+<Code>A commit</Code> is an operation that records changes made to files in a repository. In other words, it will allow you to save the current state of your project. After validating the changes, you can **synchronize** them with your remote repository on Github in one click.
+
+<MdxImage
+  title="Validate changes made to the repository"
+  path="GD/commit_updates.png"
+  alt="Validate changes made to the repository"
+/>
+
+**Share your changes**
+
+Once you've made a **commit**, you can send these changes to the remote repository which will update your project that will need to be redeployed in production. Your changes will then be available to other collaborators.
+
+<MdxImage
+  title="Push changes to Github"
+  path="GD/push_repository.png"
+  alt="Push changes to Github"
+/>
+
+**Collaborate with others**
+
+You're working in a team, and a colleague adds changes on Github. You then perform a **Pull** to integrate these changes into your local copy. So by performing a Pull, we retrieve the changes from the remote repository on Github and automatically merge them into our local branch.
+
+<MdxImage
+  title="Push changes to Github"
+  path="GD/push_repository.png"
+  alt="Push changes to Github"
+/>
+
+### Simplified branch management
+
+<Code>A branch</Code> is a parallel version of a repository that allows you to develop and test new features without affecting the main version (<Code>master</Code> or <Code>main</Code>) of the code.
+
+**Creating a branch** or **switching from one branch to another** has never been easier. You can also **merge branches** easily while having a preview of potential conflicts.
+
+<MdxImage
+  title="Overview of different repository branches"
+  path="GD/branch.png"
+  alt="Overview of different repository branches"
+/>
+
+## Getting Started with Github Desktop
+
+### Installation
+
+Github Desktop is available on **Windows**, **Mac** and **Ubuntu**. You can download it from the official website [desktop.github.com](https://desktop.github.com) and then install it.
+
+<MdxImage
+  title="Website to download Github Desktop"
+  path="GD/site_GD.png"
+  alt="Website to download Github Desktop"
+/>
+
+### Configuration 
