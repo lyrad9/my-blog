@@ -16,7 +16,7 @@ export default async function Home() {
       <Section className="flex flex-col">
         <div className="flex justify-center">
           <div className="max-w-2xl grid gap-2 ">
-            <h2 className="font-semibold dark:text-white text-muted-foreground  text-3xl leading-10 max-sm:text-2xl ">
+            <h2 className="font-semibold dark:text-white text-muted-foreground  text-4xl leading-[50px] max-sm:text-3xl ">
               {t("welcomeInMyBlog", {
                 career: (
                   <Code className="font-sans text-primary">{t("career")}</Code>

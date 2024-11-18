@@ -13,40 +13,35 @@ import { Section } from "./Section";
 export const SiteHeader = () => {
   return (
     <header className="z-20 sticky top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Section className=" flex h-14  items-center">
-        <MainNav />
-        <div className="flex flex-1 items-center justify-end gap-2">
+      <Section className=" flex h-20  items-center">
+        <Link href="/" className="text-lg font-light text-foreground ">
+          {/* <Icons.logo className="w-6 h-6"  /> */}
+          Darylngako
+        </Link>
+        <MainNav className="text-lg flex items-center justify-center space-x-4 lg:space-x-4 flex-1" />
+        <div className="flex items-center justify-center gap-1">
           <LocaleSelect />
-          <nav className="flex items-center">
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  "w-10 px-0 hidden sm:inline-flex"
-                )}
+          {/* <nav className="flex items-center">
+              <Link
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noreferrer"
               >
-                <Icons.GithubIcon className="w-4 h-4" />
-                <span className="sr-only">Github</span>
-              </div>
-            </Link>
+                <div
+                  className={cn(
+                    buttonVariants({ variant: "ghost" }),
+                    "w-10 px-0"
+                  )}
+                >
+                  <Icons.GithubIcon className="w-4 h-4" />
+                  <span className="sr-only">Github</span>
+                </div>
+              </Link>
 
-            <MobileNav />
-          </nav>
+             
+            </nav> */}
 
           <ThemeToggle />
-
-          {/* <SunIcon 
-     size={40}
-     className='rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0'
- />
- <MoonIcon 
-     size={20}
-     className='absolute rotate-90 scale-0 transition-all dark:-rotate-0 dark:scale-100 '
- /> */}
         </div>
       </Section>
     </header>

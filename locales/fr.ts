@@ -8,7 +8,7 @@ export default {
   career: "Développeur web",
 
   welcomeInMyBlog:
-    "Bienvenue dans mon monde où je vous partage mon expérience en tant que {career} et mon quotidien à travers mes {posts}.",
+    "Bienvenue dans mon monde où je vous partage mon expérience et mon quotidien en tant que {career} à travers mes {posts}.",
   greetingAbout:
     "Hi! Moi c'est Daryl. Je suis passionné de développement web depuis mes 17 ans. Je réside actuellement au Cameroun et j'aime partager mon expérience en tant que développeur.",
   careerDaily:
