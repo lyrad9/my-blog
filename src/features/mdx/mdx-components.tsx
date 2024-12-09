@@ -10,6 +10,7 @@ import { MdxPre } from "@/src/features/mdx/MdxPre";
 import { MdxP } from "@/src/features/html-components/MdxP";
 import { MdxDiv } from "@/src/features/html-components/MdxDiv";
 import { Spacing } from "../../components/shared/Spacing";
+import TableOfContents from "@/components/TableOfContents";
 import { MdxImage } from "./MdxImage";
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -22,7 +23,8 @@ const components = {
   YouTube: MdxYouTube,
   pre: MdxPre,
   Spacing,
-  MdxImage
+  MdxImage,
+  TableOfContents
   // p:MdxP
 
 
@@ -34,7 +36,7 @@ export function MDXContent({ code }: MdxProps) {
   const Component = useMDXComponent(code);
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <Component components={components} />
+      <Component  components={components} />
     </Suspense>
   );
 }

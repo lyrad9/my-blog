@@ -1,0 +1,6 @@
+# Explication détaillée du composant TableOfContents
+
+## Vue d'ensemble
+Ce composant crée une table des matières interactive qui se met à jour automatiquement lors du défilement et permet une navigation fluide dans le contenu.
+
+## Imports et Type 

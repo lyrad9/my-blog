@@ -22,12 +22,12 @@ const geistMono = localFont({
   weight: "100 900",
 });
 const AnekTelugu = Anek_Telugu({
-  subsets: ["latin"],
+  subsets: ["telugu"],
   variable: "--font-caption",
 });
 const url = getUrl()
 export const metadata: Metadata = {
-  title: "Blog de lyrad",
+  title: "Blog de Daryl",
   description:
   "I share with you my experience as a web developer and my daily life through my posts",
   
@@ -55,7 +55,7 @@ export default function RootLayout({
           geistSans.variable,
           geistMono.variable,
           AnekTelugu.variable,
-          "w-full flex-col min-h-screen bg-background font-sans text-foreground"
+          "w-full flex flex-col min-h-screen bg-background font-sans text-foreground"
         )}
       >
         <ThemeProvider

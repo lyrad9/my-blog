@@ -12,7 +12,7 @@ export const Footer = () => {
     (post) => post.favourite == true && post.lang === "fr"
   );
   return (
-    <footer className="text-sm py-4 border border-border shadow-xl min-h-14 bg-muted">
+    <footer className="z-20 text-sm py-4 border border-border shadow-xl min-h-14 bg-muted">
       <Section className="max-w-2xl">
         <div className="flex flex-col gap-8 flex-wrap">
           <div className="grid lg:grid-cols-[150px_2fr_1fr] gap-8 grid-cols-1 sm:grid-cols-2">

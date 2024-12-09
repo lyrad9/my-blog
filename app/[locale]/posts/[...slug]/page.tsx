@@ -113,7 +113,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
   // const views = (await redis.get<number>(`postview:${post.slug}`)) ?? 0;
   return (
-    <Section className="relative z-10">
+    <Section className="max-w-4xl mx-0 px-16 relative z-10">
       <Spacing size="md" />
       <article className="article">
         <div className="grid gap-3">
@@ -164,8 +164,8 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       
         <Separator className="my-4" />
-        <div id="prose" className="prose prose-invert text-muted-foreground">
-          <MDXContent code={post.body} />
+        <div id="article-content" className="w-full prose prose-invert text-muted-foreground">
+          <MDXContent  code={post.body} />
         </div>
       </article>
       <Spacing size="md" />

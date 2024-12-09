@@ -24,10 +24,10 @@ export default async function Home() {
                 posts: <Code className="font-sans text-primary">posts</Code>,
               })}
             </h2>
-            <div className="text-black dark:text-muted-foreground flex gap-2 underline text-sm">
+            {/* <div className="text-black dark:text-muted-foreground flex gap-2 underline text-sm">
               <Link href="/posts">{t("seeMyPosts")}</Link>
               <Link href="#">Github</Link>
-            </div>
+            </div> */}
           </div>
         </div>
         <Spacing size="lg" />

@@ -19,7 +19,7 @@ export const LatestPosts = async ({ className }: { className?: string }) => {
   const newestPosts = sortedPosts.slice(0, 3);
   return (
     <section className={className}>
-      <p className="mb-8 font-caption text-2xl">{t("newestPosts")}</p>
+      <p className="mb-8 font-caption text-3xl">{t("newestPosts")}</p>
       <div className="grid gap-16">
         {newestPosts.map((post) => {
           const { slug, date, title, description, categories } = post;

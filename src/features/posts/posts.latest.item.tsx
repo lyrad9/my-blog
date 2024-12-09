@@ -27,7 +27,7 @@ export const ItemLatestPosts = ({
         <div className="font-semibold dark:text-white text-primary">{title}</div>
       </div>
 
-      <p className="text-muted-foreground"> {description}</p>
+      <p className="text-muted-foreground text-justify"> {description}</p>
       {/* <Link
         href={`posts/${slug}`}
         className="text-muted-foreground font-semibold w-fit gap-1.5 flex justify-center items-center transition-all  text-sm"

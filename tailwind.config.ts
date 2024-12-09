@@ -92,7 +92,7 @@ const config: Config = {
 		  },
   	}
   },
-  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography'),    function ({ matchUtilities, theme }: any) {
+  plugins: [require("tailwindcss-animate"),require('tailwind-scrollbar')({ nocompatible: true }), require('@tailwindcss/typography'),function ({ matchUtilities, theme }: any) {
 	matchUtilities(
 	  {
 		"bg-grid": (value: any) => ({

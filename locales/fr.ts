@@ -5,7 +5,7 @@ export default {
   whoAndWhenWrittenPost: "Ecris par {author} le {date}",
   newestPosts: "Mes derniers posts",
   // hello: "Salut! C'est Daryl.",
-  career: "Développeur web",
+  career: "Développeur",
 
   welcomeInMyBlog:
     "Bienvenue dans mon monde où je vous partage mon expérience et mon quotidien en tant que {career} à travers mes {posts}.",
@@ -19,4 +19,5 @@ export default {
   seeMyPosts: "Mes posts",
   noExistPost: "Désolé, cet article n'existe pas!",
   categoriesPosts: "Catégories",
+  titleOfTableContent:"Dans cet article"
 } as const;

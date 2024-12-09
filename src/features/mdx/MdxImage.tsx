@@ -55,7 +55,7 @@ if(isBanner && Boolean(isBanner)) return (
           <div className="relative max-h-screen">
             <button
               onClick={closeModal}
-              className="absolute -right-4 -top-4 rounded-full bg-white p-2 text-gray-800 shadow-md hover:bg-gray-200"
+              className="z-[60] absolute -right-4 -top-5 rounded-full bg-white p-2 text-muted-foreground shadow-md hover:bg-gray-200"
             >
               <X className="size-3" />
             </button>
