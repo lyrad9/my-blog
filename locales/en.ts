@@ -20,5 +20,5 @@ export default {
   seeMyPosts: "My posts",
   noExistPost: "Sorry, this article does not exist!",
   categoriesPosts: "Categories",
-  titleOfTableContent:"In this article"
+  titleOfTableContent:"On this article"
 } as const;
