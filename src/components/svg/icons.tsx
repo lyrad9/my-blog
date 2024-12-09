@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { join } from "path";
-import { CreativityIcon } from "./creativityIcon";
-import { StoryIcon } from "./StoryIcon";
+import { CreativityIconSvg } from "./CreativityIconSvg";
+import { StoryIconSvg } from "./StoryIconSvg";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 export const Icons = {
@@ -52,10 +52,10 @@ export const Icons = {
     height={props.size} viewBox="0 0 128 128" {...props} ><g><path d="m72.751 60.779a6.809 6.809 0 0 1 6.776 7.477 7 7 0 0 1 -7.069 6.144h4.485l11.625-11.63a14.447 14.447 0 0 1 20.432 0l-23.861 23.86a7.552 7.552 0 0 1 -5.339 2.213h-18.63a4 4 0 0 0 -2.827 1.17l-7.353 7.354-19.841-19.9 15.057-15.053a5.583 5.583 0 0 1 3.948-1.635z" fill="#f5c464"></path><path d="m18.057 85.356h36.657v12.517h-36.657z" fill="#ee404c" transform="matrix(.707 .707 -.707 .707 75.438 1.105)" style={{ fill: 'rgb(238, 64, 76)' }}></path><path d="m84.631 23.1a4.051 4.051 0 0 0 -4.051-4.051h-33.16a4.051 4.051 0 0 0 -4.051 4.051v15.4a4.051 4.051 0 0 0 4.051 4.051h27.1l10.114 5.919v-9.71h-.034c.006-.089.027-.173.027-.264z" fill="#009d8f"></path><g fill="#fff7ed"><path d="m64.437 33.25a3.125 3.125 0 1 1 3.125-3.125 3.129 3.129 0 0 1 -3.125 3.125z" fill="#fff7ed"></path><path d="m74.375 33.25a3.125 3.125 0 1 1 3.125-3.125 3.129 3.129 0 0 1 -3.125 3.125z" fill="#fff7ed"></path><path d="m54.5 33.25a3.125 3.125 0 1 1 3.125-3.125 3.129 3.129 0 0 1 -3.125 3.125z" fill="#fff7ed"></path></g></g></svg>
   ),
   CreativityIcon: (props: IconProps & { size?: number }) => {
-    return <CreativityIcon size={props.size} iconProps={props} />;
+    return <CreativityIconSvg size={props.size} iconProps={props} />;
   },
   StoryIcon: (props: IconProps & { size?: number }) => {
-    return <StoryIcon size={props.size} iconProps={props} />;
+    return <StoryIconSvg size={props.size} iconProps={props} />;
   },
   TipsIcon: (props: IconProps & { size?: number }) => (
     <svg

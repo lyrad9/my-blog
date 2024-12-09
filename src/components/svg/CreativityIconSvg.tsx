@@ -1,6 +1,6 @@
 import { IconProps } from "./icons";
 
-export const CreativityIcon = ({size,iconProps}:{size?:number,iconProps:IconProps}) =>(
+export const CreativityIconSvg = ({size,iconProps}:{size?:number,iconProps:IconProps}) =>(
 <svg    width={size}
 
       height={size} version="1.1" id="Capa_1"  x="0px" y="0px" viewBox="0 0 512 512" xmlSpace="preserve" {...iconProps}><circle className="stroke-[25px] stroke-white"
