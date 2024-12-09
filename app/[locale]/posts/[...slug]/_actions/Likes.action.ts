@@ -26,10 +26,11 @@ export async function incrementLikes(slug: string) {
 
    const hasViewed = await redis.get(ipViewKey);
    if(hasViewed) return
-  const isNew = await redis.set(ipViewKey, true, {
-  /*   nx: true,
-    ex: 24 * 60 * 60, */
-  });
+  const isNew = await redis.set(ipViewKey, true
+  /*   , {
+    nx: true,
+    ex: 24 * 60 * 60, 
+  } */);
   const newLikeCount = await redis.incr(viewKey);
   return { likes: Number(newLikeCount ?? 0) };
 
