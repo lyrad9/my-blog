@@ -1,9 +1,10 @@
 "use client";
 import { Heart } from "lucide-react";
-import { getLikesCount } from "../_actions/getLikesCount.action";
+
 import { incrementLikes } from "../_actions/Likes.action";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/src/components/ui/button";
+import { getLikesCount } from "../_actions/getLikesCount.action";
 export const IncrementLikesCountBtn = ({ slug }: { slug: string }) => {
   const query = useQuery({
     queryFn: async () => await getLikesCount(slug),
@@ -26,8 +27,9 @@ export const IncrementLikesCountBtn = ({ slug }: { slug: string }) => {
       className="px-8 flex gap-2 items-center text-muted-foreground"
     >
       <span>
-        {Intl.NumberFormat("fr-FR", { notation: "compact" }).format(
+        {Intl.NumberFormat("fr-FR",).format(
           query.data?.likes ?? 0
+      /*   0 */
         )}{" "}
       </span>
 
