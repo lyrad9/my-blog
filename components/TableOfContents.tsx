@@ -62,7 +62,7 @@ console.log("targetId",targetId)
           const sectionId = href?.split("#")[1];
           const isActive = sectionId === activeSection
           //console.log("isActive",isActive)
-          return React.cloneElement(child as React.ReactElement<any>, {
+          return React.cloneElement(child as React.ReactElement<React.HTMLProps<HTMLElement>>, {
             
             onClick: handleClick,
             className: `text-base px-0 block py-1 hover:text-primary no-underline transition-colors ${
